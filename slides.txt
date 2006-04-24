@@ -336,14 +336,18 @@ MochiKit.DateTime
 * JavaScript Date objects aren't very convenient
 * W3C profile ISO 8601 style timestamps are Good
 
-Dates
-=====
+ISO Dates
+=========
 
 isoDate(str):
     Convert ISO 8601 date to a Date object
 
 toISODate(date):
     Convert a Date object to an ISO 8601 date
+
+
+Silly American Dates
+====================
 
 americanDate(str):
     Convert an MM/DD/YYYY date to a Date object
@@ -495,15 +499,12 @@ createDOM(tagName, attributes, contents...)
 A simple list::
 
     var node = createDOM("ul", null,
-        createDOM("li", null, "first item"),
-        createDOM("li", null, "second item"));
+        createDOM("li", null, "first"),
+        createDOM("li", null, "second"));
 
 Equivalent to::
 
-    <ul>
-        <li>first item</li>
-        <li>second item</li>
-    </ul>
+    <ul><li>first</li><li>second</li></ul>
 
 
 But that's still ugly...
@@ -512,8 +513,8 @@ But that's still ugly...
 We use aliases instead, for all of the common tags::
 
     var node = UL(null,
-        LI("first item"),
-        LI("second item"));
+        LI("first"),
+        LI("second"));
 
 Note that MochiKit 1.3 and later allows a text node as the first
 parameter for convenience (saves a lot of "null" typing)
@@ -524,7 +525,7 @@ Flattening lists
 
 Functional programming comes in handy for DOM creation::
 
-    var items = ["first item", "second item"];
+    var items = ["first", "second"];
     var node = UL(null, map(LI, items));
 
 
@@ -533,9 +534,9 @@ What about attributes?
 
 First parameter is either an object (attributes), or a string (text node)::
 
-    var classes = repeat({"class": "myitemclass"});
-    var items = ["first item", "second item"];
-    var node = UL({"class": "mylistclass"},
+    var classes = repeat({"class": "itemclass"});
+    var items = ["first", "second"];
+    var node = UL({"class": "listclass"},
         map(LI, classes, items));
 
 
@@ -545,7 +546,7 @@ Alternating classes
 More MochiKit.Iter goodies, good for table rows::
 
     var classes = cycle({"class": "even"}, {"class": "odd"});
-    var items = ["first item", "second item"];
+    var items = ["first", "second"];
     var node = UL(null, map(LI, classes, items));
 
 
