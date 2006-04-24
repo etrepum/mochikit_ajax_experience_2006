@@ -4989,7 +4989,7 @@ function toggle() {
 		slides.disabled = false;
 		outline.disabled = true;
 		s5mode = true;
-		fontScale();
+		s5_fontScale();
 		for (var n = 0; n < smax; n++) {
 			var slide = slideColl[n];
 			slide.style.visibility = 'hidden';
@@ -5077,7 +5077,7 @@ function s5_keys(key) {
 	return false;
 }
 
-function clicker(e) {
+function s5_clicker(e) {
 	number = undef;
 	var target;
 	if (window.event) {
@@ -5181,7 +5181,7 @@ function createControls() {
 	addClass(hidden,'hideme');
 }
 
-function fontScale() {  // causes layout problems in FireFox that get fixed if browser's Reload is used; same may be true of other Gecko-based browsers
+function s5_fontScale() {  // causes layout problems in FireFox that get fixed if browser's Reload is used; same may be true of other Gecko-based browsers
 	if (!s5mode) return false;
 	var vScale = 22;  // both yield 32 (after rounding) at 1024x768
 	var hScale = 32;  // perhaps should auto-calculate based on theme's declared value?
@@ -5299,7 +5299,7 @@ function defaultCheck() {
 }
 
 // Key trap fix, new function body for trap()
-function trap(e) {
+function s5_trap(e) {
 	if (!e) {
 		e = event;
 		e.which = e.keyCode;
@@ -5319,7 +5319,7 @@ function startup() {
 	slideLabel();
 	fixLinks();
 	externalLinks();
-	fontScale();
+	s5_fontScale();
 	if (!isOp) {
 		notOperaFix();
 		incrementals = createIncrementals();
@@ -5328,10 +5328,10 @@ function startup() {
 			toggle();
 		}
 		document.onkeyup = s5_keys;
-		document.onkeypress = trap;
-		document.onclick = clicker;
+		document.onkeypress = s5_trap;
+		document.onclick = s5_clicker;
 	}
 }
 
 window.onload = startup;
-window.onresize = function(){setTimeout('fontScale()', 50);}
+window.onresize = function(){setTimeout('s5_fontScale()', 50);}
