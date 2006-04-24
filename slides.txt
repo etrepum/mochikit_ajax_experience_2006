@@ -328,3 +328,277 @@ Should I care about Iter?
   functional paradigm
 * If you don't use itertools in Python, you probably won't directly use
   much of MochiKit.Iter either
+
+
+MochiKit.DateTime
+=================
+
+* JavaScript Date objects aren't very convenient
+* W3C profile ISO 8601 style timestamps are Good
+
+Dates
+=====
+
+isoDate(str):
+    Convert ISO 8601 date to a Date object
+
+toISODate(date):
+    Convert a Date object to an ISO 8601 date
+
+americanDate(str):
+    Convert an MM/DD/YYYY date to a Date object
+
+toAmericanDate(date):
+    Convert a Date object to a M/D/YYYY date (1/1/2001)
+
+toPaddedAmericanDate(date):
+    Convert a Date object to a MM/DM/YYYY date (01/01/2001)
+
+
+Time and Timestamps
+===================
+
+isoTimestamp(str):
+    Convert a YYYY-MM-DD hh:mm:ss or YYYY-MM-DDThh:mm:ssZ timestamp to a
+    Date object
+
+toISOTime(date):
+    Convert a Date object to a hh:mm:ss string
+
+toISOTimestamp(date, realISO=false):
+    Convert a Date object to a YYYY-MM-DD hh:mm:ss string.  If realISO is true,
+    then use the proper YYYY-MM-DDThh:mm:ssZ form.
+
+
+MochiKit.Format
+===============
+
+* JavaScript doesn't really do string formatting
+* Users like to see big numbers with thousands separators
+* Number formatting based on Java's Number Format Pattern Syntax
+
+
+Simple String Mangling
+======================
+
+strip(str, chars="\\s"):
+    Return a string based on str with leading and trailing whitespace stripped.
+    If the chars regex is specified, it will be used instead of the default.
+
+lstrip(str, chars="\\s"):
+    strip only leading whitespace
+
+rstrip(str, chars="\\s"):
+    strip only trailing whitespace
+
+
+Number Formatting
+=================
+
+numberFormatter(pattern, placeholder="", locale="default"):
+    Return a function that formats numbers using the given pattern
+
+Examples::
+    
+    >>> dollarFormat = numberFormatter("$###,###.##")
+    >>> dollarFormat(1234567.89)
+    "$1,234,567.89"
+    
+    >>> percentFormat = numberFormatter("###,###%")
+    >>> percentFormat(123.45)
+    "12,345%"
+
+
+MochiKit.Logging
+================
+
+* alert() sucks
+* Debugging is hard enough
+* Not every browser has FireBug
+* I've had no luck with Venkman
+* Less luck with Microsoft's Script Debugger
+
+
+Simple logging
+==============
+
+log(msg):
+    Logs a message at the INFO level
+
+logDebug(msg):
+    Logs a message at the DEBUG level
+
+logWarning, logError, logFatal...
+
+
+Where'd my log messages go?
+===========================
+
+* In Safari, Firefox with FireBug, and Opera they will be logged to the
+  appropriate console (but you can turn this off).
+* Will also go to any logging listener
+* Logging listeners are just functions that take log message objects
+
+
+Bookmarklet Debugging
+=====================
+
+Just bookmark this::
+
+    javascript:MochiKit.Logging.logger.debuggingBookmarklet()
+
+Currently, this is a pop-up MochiKit.LoggingPane.
+
+
+MochiKit.LoggingPane
+====================
+
+* A usable MochiKit.Logging listener
+* Can be used in-line or as a pop-up window
+* Could be fancier, but it gets the job done
+
+
+Manually creating a LoggingPane
+===============================
+
+Pop-up::
+
+    createLoggingPane()
+
+Inline::
+
+    createLoggingPane(true)
+
+
+MochiKit.DOM
+============
+
+* DOM is painful, but it doesn't have to be
+* Functions for finding, creating, modifying DOM nodes
+* Most functions will take either a string or a DOM node reference, saving
+  you the trouble of getElementById(s), $(s) or similar.
+
+
+createDOM
+=========
+
+* Does a good job of turning any object into a DOM node
+* Strings and numbers to text, flattens Arrays or iterators of anything
+* Extensible with an adapter registry
+
+
+createDOM example
+=================
+
+createDOM(tagName, attributes, contents...)
+
+A simple list::
+
+    var node = createDOM("ul", null,
+        createDOM("li", null, "first item"),
+        createDOM("li", null, "second item"));
+
+Equivalent to::
+
+    <ul>
+        <li>first item</li>
+        <li>second item</li>
+    </ul>
+
+
+But that's still ugly...
+========================
+
+We use aliases instead, for all of the common tags::
+
+    var node = UL(null,
+        LI("first item"),
+        LI("second item"));
+
+Note that MochiKit 1.3 and later allows a text node as the first
+parameter for convenience (saves a lot of "null" typing)
+
+
+Flattening lists
+================
+
+Functional programming comes in handy for DOM creation::
+
+    var items = ["first item", "second item"];
+    var node = UL(null, map(LI, items));
+
+
+What about attributes?
+======================
+
+First parameter is either an object (attributes), or a string (text node)::
+
+    var classes = repeat({"class": "myitemclass"});
+    var items = ["first item", "second item"];
+    var node = UL({"class": "mylistclass"},
+        map(LI, classes, items));
+
+
+Alternating classes
+===================
+
+More MochiKit.Iter goodies, good for table rows::
+
+    var classes = cycle({"class": "even"}, {"class": "odd"});
+    var items = ["first item", "second item"];
+    var node = UL(null, map(LI, classes, items));
+
+
+Scraping text
+=============
+
+Scraping text is useful for progressive enhancement...
+
+HTML::
+
+    <span id="scrape_me">text is <b>here</b></span>
+
+JavaScript::
+
+    >>> scrapeText("scrape_me");
+    "text is here"
+
+
+Reading forms
+=============
+
+HTML::
+
+    <form id="formNode">
+        <input type="hidden" name="foo" value="1" />
+        <input type="hidden" name="bar" value="2" />
+    </form>
+
+JavaScript::
+
+    >>> formContents("formNode")
+    [["foo", "bar"], ["1", "2"]]
+
+
+Manipulating DOM nodes
+======================
+
+appendChildNodes(parentNode, childNode...):
+    Add nodes to parentNode using the DOM coercion rules from createDOM
+
+replaceChildNodes(parentNode, childNode...):
+    Remove all children from parentNode, then appendChildNodes
+
+swapDOM(dest, src):
+    Replace dest with src (if src is null, then dest is removed)
+
+
+Manipulating DOM attributes
+===========================
+
+setNodeAttribute(node, attr, value):
+    Set the node attribute attr=value 
+
+updateNodeAttributes(node, attrs):
+    Set the node attributes based on the object attrs
+    
