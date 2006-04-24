@@ -4,7 +4,7 @@
  Intro to MochiKit
 ===================
 
-:Authors: Bob Ippolito
+:Author: Bob Ippolito
 :Date: May 2006
 
 .. contents::
@@ -35,21 +35,21 @@ MochiKit Design Goals
 * Documentation
 * DOCUMENTATION
 * Test early test often
-* Stay out of the user's (and other code's) way
+* Stay out of the way (not a framework)
 * Consistent
 * Portable
-* Workarounds for platform differences
+* Workaround browser stupidity
 
 
 Why MochiKit?
 =============
 
-* Python-like (think "standard library")
+* Extremely well documented, tested, stable
+* Safari 2.0, Firefox 1.0, IE 6, Opera 8.5 (and others)
 * Abstracts async behavior
 * MochiKit.DOM syntax makes DOM painless
-* MochiKit.Signal works around LOTS of browser misfeatures (keyboard events!)
-* Extremely well documented, tested, stable
-* Safari 2, Firefox 1, IE 6, Opera 8
+* MochiKit.Signal works around LOTS of browser misfeatures
+* Python-like (think "standard library")
 
 
 Why not MochiKit?
@@ -66,6 +66,7 @@ MochiKit.Base
 
 * Beats some sense into JavaScript
 * Provides analogs to a lot Python built-ins and object protocols
+* This is the "suck less" part
 
 
 toString ambiguity
