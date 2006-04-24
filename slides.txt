@@ -14,8 +14,6 @@
 What's MochiKit?
 ================
 
-.. class:: incremental
-
 * Makes JavaScript suck less
 * Provides browser workarounds
 * Simplifies AJAX and DOM
@@ -25,8 +23,6 @@ What's MochiKit?
 Another library?!
 =================
 
-.. class:: incremental
-
 * Prototype was undocumented, no tests, didn't play nice
 * Dojo had no documentation or demos
 * Everything else was outdated, not liberally licensed,
@@ -35,8 +31,6 @@ Another library?!
 
 Why MochiKit?
 =============
-
-.. class:: incremental
 
 * Python-like (think "standard library")
 * Abstracts async behavior
@@ -49,9 +43,288 @@ Why MochiKit?
 Why not MochiKit?
 =================
 
-.. class:: incremental
-
 * No support for IE 5.5
 * No widgets
 * No animation, transitions, etc.
 * ... but we're working on a Scriptaculous port (MochiKit 1.4)
+
+
+MochiKit.Base
+=============
+
+* Beats some sense into JavaScript
+* Provides analogs to a lot Python built-ins and object protocols
+
+
+toString ambiguity
+==================
+
+* Which one of these things is not like the other:
+
+    - [1]
+    - 1.0
+    - "1"
+
+* They're all the same according to JavaScript's toString!  Totally useless
+  for debugging.
+
+
+repr > toString
+===============
+
+* MochiKit provides repr() instead, just like Python.
+  Think "programmer representation".
+
+    - repr([1]) == "[1]"
+    - repr(1.0) == "1"
+    - repr("1") == "\"1\""
+
+* repr understands primitive types, objects that implement ``repr`` or 
+  ``__repr__``
+
+* Extensible with an adapter registry
+
+
+compare instead of operators
+============================
+
+* JavaScript comparisons are WHACK (these are ``true``!)
+
+  - [1,"2"] == "1,2"
+  - ([""] == "") && ([] == "") && ([] != [""])
+
+* compare(a, b) provides consistent results
+
+  - Usable with Array.prototype.sort
+  - Understands String, Date, Array, Number, String, ...
+  - Can be extended with adapter registry
+
+
+JSON serialization
+==================
+
+* serializeJSON(object) -> JSON string
+
+  - Understands primitive types
+  - Will call ``json`` or ``__json__`` on objects if method exists
+  - Can be extended with adapter registry
+
+
+Wait.. Adapters?
+================
+
+* Not a good idea to hack on built-in objects
+* MochiKit doesn't always know what you want to do
+* Adapters let you extend existing functions
+
+  - registerRepr(name, check, wrap, override=false)
+  - registerComparator(name, check, wrap, override=false)
+  - registerJSON(name, check, wrap, override=false)
+
+
+Registering an adapter
+======================
+
+name:
+    a unique identifier for your adapter (can be used to unregister)
+
+check:
+    a predicate, should wrap be called?
+
+wrap:
+    performs the operation
+
+
+DOM comparator example
+======================
+
+Register HTML-based comparator for DOM nodes::
+
+    function isDOMNode(node) {
+        return typeof(node.nodeType) == "number";
+    }
+
+    function compareDOMNodes(a, b) {
+        return compare(a.innerHTML, b.innerHTML);
+    }
+
+    registerComparator("compareDOM", isDOMNode, compareDOMNode);
+
+
+queryString
+===========
+
+* queryString(["foo", "bar"], [1, 2]) == "foo=1&bar=2"
+* queryString({foo: 1, bar: 2}) == "foo=1&bar=2"
+* queryString("formNode") == "foo=1&bar=2", given::
+
+    <form id="formNode">
+        <input type="hidden" name="foo" value="1" />
+        <input type="hidden" name="bar" value="2" />
+    </form>
+
+
+Mangling Objects
+================
+
+merge(obj[, ...]):
+    Create a new object consisting of every property in the given objects
+    (last object given takes precedence)
+
+update(obj[, ...]):
+    In-place version of merge
+
+updatetree(obj[, ...]):
+    Recursive version of update
+
+setdefault(obj[, ...]):
+    Like update, but does NOT overwrite existing properties
+
+
+Object Introspection
+====================
+
+keys(obj):
+    returns an Array of every property on obj
+
+items(obj):
+    returns an Array of every [property, value] on obj
+
+
+Function functions
+==================
+
+bind(fn, self[, arg...]):
+    new function, equivalent to fn.apply(self, concat(arg..., arguments))
+
+itemgetter(name):
+    new function(obj), equivalent to obj[name]
+
+keyComparator(key, ...):
+    new sort function that does compare(a[key], b[key])
+
+forward(name):
+    new function, forwards calls to this[name] (for delegation)
+
+
+Basic Array functions
+=====================
+
+Array.prototype is missing lots of useful functions (cross-platform anyway)
+
+concat(lst[, ...]):
+    concatenates Arrays
+
+extend(self, seq, skip=0):
+    extends a list in-place
+
+
+compare-based Array functions
+=============================
+
+find(lst, value, start=0, end=lst.length):
+    finds index of value (using compare)
+
+findIdentical(lst, value, start=0, end=lst.length):
+    finds index of value (using === for identity)
+
+listMin(lst):
+    finds least item in lst (using compare)
+
+listMax(lst):
+    finds greatest item in lst (using compare)
+
+
+Higher-order Array functions
+============================
+
+filter(predicate, lst):
+    new Array where predicate(lst[n]) is true
+
+map(func, lst):
+    new Array of [func(lst[0]), func(lst[1]), ...]
+
+
+MochiKit.Iter
+=============
+
+MochiKit.Iter provides generalized iteration, very similar to Python's
+iteration protocol and itertools module.
+
+* Works great on Arrays, but also on anything iterable.
+* Anything with a ``next`` method is iterable, and the iteration stops when
+  StopIteration is thrown.
+* Objects can define an ``iter`` method to return an iterable
+* Can register adapters too, with registerIterable.
+
+
+Collapsing Iterators
+====================
+
+exhaust(iterable):
+    Iterate over ``iterable`` and throw away the results
+
+list(iterable):
+    Convert ``iterable`` to a new Array
+
+sorted(iterable[, cmp]):
+    Return a sorted Array from ``iterable``, optionally using ``cmp`` for
+    the comparator
+
+sum(iterable, start=0):
+    Return the sum of each item in ``iterable`` plus the ``start``.
+    If ``iterable`` is empty, ``start`` will be returned.
+
+
+Iterating Iterables
+===================
+
+The hard way::
+
+    var itr = iter(iterable);
+    try {
+        while (true) {
+            var item = itr.next();
+            // ...
+        }
+    } catch (e) {
+        if (e != StopIteration) {
+            throw e;
+        }
+    }
+
+
+Sane Iterable Iteration
+=======================
+
+The easy way::
+
+    forEach(iterable, function (item) {
+        // ...
+    })
+
+
+Infinite Iterators
+==================
+
+count(n=0):
+    Iterates over a sequence of numbers (n, n + 1, n + 2, ...)
+
+cycle(iterable):
+    Iterates over iterable and saves the results.  Once iterable is exhausted,
+    it iterates over the cached result Array indefinitely.
+
+repeat(item):
+    Returns an iterator that returns item over and over, same as
+    cycle([item])
+
+
+Should I care about Iter?
+=========================
+
+* You don't need to understand it to understand MochiKit
+* Used primarily to simplify internal code, helps a lot with DOM generation
+* You might not need it, but it is convenient for people used to a more
+  functional paradigm
+* If you don't use itertools in Python, you probably won't directly use
+  much of MochiKit.Iter either
