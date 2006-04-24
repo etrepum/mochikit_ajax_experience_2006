@@ -211,13 +211,16 @@ Function functions
 bind(fn, self[, arg...]):
     new function, equivalent to fn.apply(self, concat(arg..., arguments))
 
+method(self, fn[, arg...]):
+    convenience form for bind
+
 itemgetter(name):
     new function(obj), equivalent to obj[name]
 
 keyComparator(key, ...):
     new sort function that does compare(a[key], b[key])
 
-forward(name):
+forwardCall(name):
     new function, forwards calls to this[name] (for delegation)
 
 
@@ -232,11 +235,15 @@ concat(lst[, ...]):
 extend(self, seq, skip=0):
     extends a list in-place
 
+flattenArguments(args[, ...]):
+    Creates a flat Array from a bunch of arguments, recursively flattening
+    any Arrays that are encountered
+
 
 compare-based Array functions
 =============================
 
-find(lst, value, start=0, end=lst.length):
+findValue(lst, value, start=0, end=lst.length):
     finds index of value (using compare)
 
 findIdentical(lst, value, start=0, end=lst.length):
