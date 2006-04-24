@@ -267,13 +267,11 @@ exhaust(iterable):
 list(iterable):
     Convert ``iterable`` to a new Array
 
-sorted(iterable[, cmp]):
-    Return a sorted Array from ``iterable``, optionally using ``cmp`` for
-    the comparator
+sorted(iterable, cmp=compare):
+    Return a sorted Array from ``iterable`` using ``cmp`` as the comparator
 
 sum(iterable, start=0):
     Return the sum of each item in ``iterable`` plus the ``start``.
-    If ``iterable`` is empty, ``start`` will be returned.
 
 
 Iterating Iterables
@@ -288,9 +286,7 @@ The hard way::
             // ...
         }
     } catch (e) {
-        if (e != StopIteration) {
-            throw e;
-        }
+        if (e != StopIteration) throw e;
     }
 
 
@@ -603,3 +599,174 @@ setNodeAttribute(node, attr, value):
 updateNodeAttributes(node, attrs):
     Set the node attributes based on the object attrs
     
+
+MochiKit.Color
+==============
+
+* Full CSS3 color model with alpha
+* NSColor-like API (from Cocoa)
+* Works in RGB, HSV, HSL
+* Normalized, all components from [0.0, 1.0]
+
+
+Creating colors from components
+===============================
+
+* Color.fromRGB(r, g, b, alpha=1.0)
+* Color.fromHSL(h, s, l, alpha=1.0)
+* Color.fromHSV(h, s, v, alpha=1.0)
+
+Will also take objects, e.g. {r: 1, g: 0, b: 0, a: 1}
+
+
+Creating colors from strings
+============================
+
+Color.fromString(str):
+    Generally "does what you mean" with any valid CSS color description.
+    "rgb(...)", "hsl(...)", "#RRGGBB", "blue"
+
+Implementations in fromRGBString, fromHSLString, fromHexString, fromName.
+
+
+Creating colors from DOM elements
+=================================
+
+Color.fromBackground(node)
+Color.fromComputedStyle(node, style, css)
+Color.fromText(node)
+
+
+Built-in NSColor colors
+=======================
+
+NSColor-based constructors for basic colors
+
+- Color.whiteColor()
+- Color.blueColor()
+- Color.transparentColor()
+- ...
+
+
+Mixing colors
+=============
+
+- color.blendedColor(otherColor, fraction)
+- color.colorWithHue(hue)
+- color.colorWithLevel(level)
+- color.colorWithSaturation(saturation)
+- color.colorWithAlpha(alpha)
+
+
+Getting color values
+====================
+
+Objects:
+
+- color.asRGB()
+- color.asHSL()
+- color.asHSV()
+
+Strings:
+
+- color.toHexString()
+- color.toRGBString()
+- color.toHSLString()
+
+
+MochiKit.Async
+==============
+
+* Yes, there is AJAX
+* Generalized asynchronous model based on Twisted
+* Handles XMLHttpRequest and timed events (setTimeout)
+
+
+WTF is a Deferred?
+==================
+
+* A "promise" to call back exactly once with a single result (or error)
+  at some time (could be immediately!)
+* Can be chained
+* Model works in any asynchronous platform with nearly any language
+* Not "ideal" API, but without threads or anything resembling coroutines
+  it's the best you can do.
+
+
+Trivial Deferreds
+=================
+
+succeed(value):
+    A successful deferred that will callback with value
+
+fail(error):
+    A failed deferred that will errback with value
+
+maybeDeferred(func, arguments..):
+    Call a function and make sure it returns a Deferred.  Non-deferred return
+    values get wrapped with succeed, and errors get wrapped with fail.
+    
+
+Timed Events
+============
+
+wait(seconds, value):
+    Return a Deferred that calls back with value after seconds have passed
+
+callLater(seconds, func, arguments...):
+    Return a Deferred that will call func(arguments) after seconds have passed
+
+
+Network Events
+==============
+
+doSimpleXMLHttpRequest(url[, queryArguments]):
+    Set up a GET XMLHttpRequest to url and return a Deferred.  The Deferred
+    will callback with the XMLHttpRequest instance.
+
+loadJSONDoc(url[, queryArguments]):
+    Set up a simple XMLHttpRequest, process its responseText as JSON, and
+    callback with the JSON object.
+
+
+Deferred Usage
+==============
+
+Fetch a JSON document::
+
+    function gotDocument(json) {
+        // ...
+    }
+    var d = loadJSONDoc("example.json");
+    d.addCallback(gotDocument);
+    d.addErrback(logError);
+
+Result Chaining
+===============
+
+The implementation of loadJSONDoc looks like this::
+
+    var d = doSimpleXMLHttpRequest(url);
+    d.addCallback(evalJSONDoc);
+    return d;
+
+Further callbacks get the result of evalJSONDoc, not the original
+doSimpleXMLHttpRequest result.
+
+
+Deferred Chaining
+=================
+
+Returning a Deferred from a callback will "pause" the callback chain::
+    
+    function gotDocument(json) {
+        // ...
+    }
+    function delay(res) {
+        return wait(2.0, res);
+    }
+    var d = loadJSONDoc("example.json");
+    d.addCallback(delay);
+    d.addCallback(gotDocument);
+    d.addErrback(logError);
+        
