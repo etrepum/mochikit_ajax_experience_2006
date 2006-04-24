@@ -29,6 +29,18 @@ Another library?!
   not cross-platform
 
 
+MochiKit Design Goals
+=====================
+
+* Documentation
+* DOCUMENTATION
+* Test early test often
+* Stay out of the user's (and other code's) way
+* Consistent
+* Portable
+* Workarounds for platform differences
+
+
 Why MochiKit?
 =============
 
@@ -92,6 +104,7 @@ compare instead of operators
 
   - [1,"2"] == "1,2"
   - ([""] == "") && ([] == "") && ([] != [""])
+
 
 * compare(a, b) provides consistent results
 
@@ -632,9 +645,9 @@ Implementations in fromRGBString, fromHSLString, fromHexString, fromName.
 Creating colors from DOM elements
 =================================
 
-Color.fromBackground(node)
-Color.fromComputedStyle(node, style, css)
-Color.fromText(node)
+- Color.fromBackground(node)
+- Color.fromComputedStyle(node, style, css)
+- Color.fromText(node)
 
 
 Built-in NSColor colors
@@ -770,3 +783,76 @@ Returning a Deferred from a callback will "pause" the callback chain::
     d.addCallback(gotDocument);
     d.addErrback(logError);
         
+
+MochiKit.Signal
+===============
+
+* Crown jewels of MochiKit 1.3
+* Sorry it took so long
+* Events in browsers totally suck
+
+
+What sucks about browser events?
+================================
+
+* IE is totally different
+* IE's garbage "collector"
+* Safari needs help
+* They all disagree on pixel positions
+* Damn near impossible to get key events to work properly cross-platform
+
+
+connect and DOM
+===============
+
+This works everywhere::
+
+    function myClick(e) {
+        var mouse = e.mouse();
+        log("page coordinates: " + mouse.page);
+        log("client coordinates: " + mouse.client);
+    }
+    connect("element_id", "onclick", myClick);
+
+
+Not Really The Event Object
+===========================
+
+* MochiKit.Signal gives you a consistent event object, NOT the browser's.
+* e.type() is the event type (doesn't include the "on" prefix)
+* e.target() is the event target
+* e.mouse() has consistent client and page coordinates
+* e.key() has consistent keyboard state
+* ... and consistent key codes and key names!!@#!
+* e.stop() does both W3C stopPropagation and preventDefault for convenience
+
+
+Not Just For Browser Events
+===========================
+
+* Can register your own signals for your own objects
+* Arbitrary event broadcasting
+* This feature is not currently used internally or in any examples,
+  though it is documented and tested
+
+
+MochiKit on the Web
+===================
+
+Home page:
+    http://mochikit.com/
+
+Bug tracker/Wiki:
+    http://trac.mochikit.com/
+
+Subversion repository:
+    http://svn.mochikit.com/
+
+
+MochiKit Support
+================
+
+- Check the documentation
+- Ask on the mailing list
+- Check the wiki/bug tracker
+- #mochikit on irc.freenode.net
