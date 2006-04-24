@@ -614,6 +614,13 @@ updateNodeAttributes(node, attrs):
     Set the node attributes based on the object attrs
     
 
+DOM Gotchas
+===========
+
+* DOM manipulation isn't as fast as innerHTML, but it's a LOT easier
+* IE expects tables to have a TBODY
+
+
 MochiKit.Color
 ==============
 
