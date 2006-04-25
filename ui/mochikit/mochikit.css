@@ -1,0 +1,10 @@
+/* body {background: white url(mochikit_logo.gif) -16px 0 no-repeat; color: black;} */
+div#mochikit_logo {
+    background: transparent url(mochikit_logo.gif) 0 0 no-repeat;
+    z-index: 10000;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 160px;
+    height: 85px;
+}

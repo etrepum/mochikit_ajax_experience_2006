@@ -1,5 +1,8 @@
 .. include:: <s5defs.txt>
 
+.. raw:: html
+    :file: includes/logo.html
+
 ===================
  Intro to MochiKit
 ===================
@@ -96,6 +99,13 @@ repr > toString
   ``__repr__``
 
 * Extensible with an adapter registry
+
+
+MochiKit Interpreter
+====================
+
+.. raw:: html
+    :file: includes/interpreter.html
 
 
 compare instead of operators
@@ -217,12 +227,6 @@ method(self, fn[, arg...]):
 itemgetter(name):
     new function(obj), equivalent to obj[name]
 
-keyComparator(key, ...):
-    new sort function that does compare(a[key], b[key])
-
-forwardCall(name):
-    new function, forwards calls to this[name] (for delegation)
-
 
 Basic Array functions
 =====================
@@ -264,6 +268,9 @@ filter(predicate, lst):
 
 map(func, lst):
     new Array of [func(lst[0]), func(lst[1]), ...]
+
+keyComparator(key, ...):
+    new sort function that does compare(a[key], b[key])
 
 
 MochiKit.Iter
@@ -830,8 +837,8 @@ This works everywhere::
     connect("element_id", "onclick", myClick);
 
 
-Not Really The Event Object
-===========================
+Custom Event Object
+===================
 
 * MochiKit.Signal gives you a consistent event object, NOT the browser's.
 * e.type() is the event type (doesn't include the "on" prefix)
@@ -840,6 +847,14 @@ Not Really The Event Object
 * e.key() has consistent keyboard state
 * ... and consistent key codes and key names!!@#!
 * e.stop() does both W3C stopPropagation and preventDefault for convenience
+
+
+Signal Anything
+===============
+
+* You can use MochiKit.Signal to broadcast your own events
+* connect() and disconnect() are the same
+* signal(src, signal, args...) to fire the event
 
 
 MochiKit on the Web

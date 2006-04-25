@@ -8,3 +8,7 @@
 
 /* styles that make the slides look good */
 @import url(pretty.css);
+
+/* MochiKit additions */
+@import url(mochikit.css);
+@import url(examples/interpreter.css);

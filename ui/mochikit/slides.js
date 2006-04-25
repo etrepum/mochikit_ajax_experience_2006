@@ -521,7 +521,7 @@ function defaultCheck() {
 }
 
 // Key trap fix, new function body for trap()
-function trap(e) {
+function s5_trap(e) {
 	if (!e) {
 		e = event;
 		e.which = e.keyCode;
@@ -549,14 +549,54 @@ function startup() {
 		if (defaultView == 'outline') {
 			toggle();
 		}
+
+        var is_using_s5 = true;
+        
+        // XXX: mochi stuff
+        function e_wrap(fn) {
+            return function (e) {
+                if (e.type() == "keyup" && e.modifier().ctrl && 
+                        e.key().string == "KEY_I") {
+                    is_using_s5 = !is_using_s5;
+                    logDebug("Toggled interactive mode " +
+                        (is_using_s5 ? "off" : "on"));
+                    e.stop();
+                    return;
+                }
+                if (!is_using_s5) return;
+
+                var res;
+                if (window.event) {
+                    res = fn();
+                } else {
+                    res = fn(e.event());
+                }
+                if (!res) {
+                    e.stop();
+                }
+            }
+        };
+                    
+        connect(document, 'onkeyup', e_wrap(s5_keys));
+        connect(document, 'onkeypress', e_wrap(s5_trap));
+        connect(document, 'onclick', e_wrap(clicker));
+        /*
 		document.onkeyup = s5_keys;
-		document.onkeypress = trap;
+		document.onkeypress = s5_trap;
 		document.onclick = clicker;
+        */
 	}
 }
 
+// XXX: globals it wants
+window.showHide = showHide;
+window.go = go;
+window.toggle = toggle;
+window.fontScale = fontScale;
+
 window.onload = startup;
 window.onresize = function(){setTimeout('fontScale()', 50);}
+
 })();
 
 document.write('<script src="ui/mochikit/MochiKit/MochiKit.js"' + 
