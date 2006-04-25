@@ -4,6 +4,7 @@
     font-size: .60em; 
     padding: 2px 4px;
     margin-top: .3em;
+    width: 96%;
 }
 
 #interpreter_text:focus {
@@ -15,8 +16,8 @@
     border: 1px solid #CCCCCC;
     padding: 2px 4px;
     margin-top: .3em;
-    width: 600px;
-    height: 300px;
+    width: 95%;
+    height: 11em;
     overflow: auto;
 }
 

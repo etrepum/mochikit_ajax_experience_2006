@@ -98,8 +98,6 @@ repr > toString
 * repr understands primitive types, objects that implement ``repr`` or 
   ``__repr__``
 
-* Extensible with an adapter registry
-
 
 MochiKit Interpreter
 ====================
@@ -113,11 +111,14 @@ compare instead of operators
 
 * JavaScript comparisons are WHACK (these are ``true``!)
 
+
   - [1,"2"] == "1,2"
   - ([""] == "") && ([] == "") && ([] != [""])
 
 
+
 * compare(a, b) provides consistent results
+
 
   - Usable with Array.prototype.sort
   - Understands String, Date, Array, Number, String, ...
@@ -141,9 +142,9 @@ Wait.. Adapters?
 * MochiKit doesn't always know what you want to do
 * Adapters let you extend existing functions
 
-  - registerRepr(name, check, wrap, override=false)
-  - registerComparator(name, check, wrap, override=false)
-  - registerJSON(name, check, wrap, override=false)
+  - registerRepr
+  - registerComparator
+  - registerJSON
 
 
 Registering an adapter
@@ -172,7 +173,8 @@ Register HTML-based comparator for DOM nodes::
         return compare(a.innerHTML, b.innerHTML);
     }
 
-    registerComparator("compareDOM", isDOMNode, compareDOMNode);
+    registerComparator("compareDOM",
+        isDOMNode, compareDOMNode);
 
 
 queryString
@@ -335,7 +337,7 @@ count(n=0):
     Iterates over a sequence of numbers (n, n + 1, n + 2, ...)
 
 cycle(iterable):
-    Iterates over iterable and saves the results.  Once iterable is exhausted,
+    Iterates over iterable and saves the results. Once iterable is exhausted,
     it iterates over the cached result Array indefinitely.
 
 repeat(item):
@@ -394,7 +396,7 @@ toISOTime(date):
     Convert a Date object to a hh:mm:ss string
 
 toISOTimestamp(date, realISO=false):
-    Convert a Date object to a YYYY-MM-DD hh:mm:ss string.  If realISO is true,
+    Convert a Date object to a YYYY-MM-DD hh:mm:ss string. If realISO is true,
     then use the proper YYYY-MM-DDThh:mm:ssZ form.
 
 
@@ -426,12 +428,18 @@ Number Formatting
 numberFormatter(pattern, placeholder="", locale="default"):
     Return a function that formats numbers using the given pattern
 
-Examples::
+Number Formatter Examples
+=========================
     
+Currency::
+
     >>> dollarFormat = numberFormatter("$###,###.##")
     >>> dollarFormat(1234567.89)
     "$1,234,567.89"
     
+
+Percents::
+
     >>> percentFormat = numberFormatter("###,###%")
     >>> percentFormat(123.45)
     "12,345%"
@@ -496,6 +504,13 @@ Pop-up::
 Inline::
 
     createLoggingPane(true)
+
+
+Inline LoggingPane Example
+==========================
+
+.. raw:: html
+    :file: includes/logging_pane.html
 
 
 MochiKit.DOM
@@ -738,7 +753,7 @@ fail(error):
     A failed deferred that will errback with value
 
 maybeDeferred(func, arguments..):
-    Call a function and make sure it returns a Deferred.  Non-deferred return
+    Call a function and make sure it returns a Deferred. Non-deferred return
     values get wrapped with succeed, and errors get wrapped with fail.
     
 
@@ -756,7 +771,7 @@ Network Events
 ==============
 
 doSimpleXMLHttpRequest(url[, queryArguments]):
-    Set up a GET XMLHttpRequest to url and return a Deferred.  The Deferred
+    Set up a GET XMLHttpRequest to url and return a Deferred. The Deferred
     will callback with the XMLHttpRequest instance.
 
 loadJSONDoc(url[, queryArguments]):

@@ -260,65 +260,67 @@ InterpreterManager.prototype.showResult = function (res) {
     }
 };
 
-window.writeln = function () {
-    appendChildNodes("interpreter_output",
-        SPAN({"class": "data"}, arguments),
-        BR()
-    );
-    interpreterManager.doScroll();
-};
+InterpreterManager.prototype.setupWindowFunctions = function () {
+    window.writeln = function () {
+        appendChildNodes("interpreter_output",
+            SPAN({"class": "data"}, arguments),
+            BR()
+        );
+        interpreterManager.doScroll();
+    };
 
-window.clear = function () {
-    replaceChildNodes("interpreter_output");
-    getElement("interpreter_area").scrollTop = 0;
-};
+    window.clear = function () {
+        replaceChildNodes("interpreter_output");
+        getElement("interpreter_area").scrollTop = 0;
+    };
 
-window.blockOn = function (d) {
-    if (!(d instanceof Deferred)) {
-        throw new TypeError(repr(d) + " is not a Deferred!");
-    }
-    interpreterManager.blockOn(d);
-};
+    window.blockOn = function (d) {
+        if (!(d instanceof Deferred)) {
+            throw new TypeError(repr(d) + " is not a Deferred!");
+        }
+        interpreterManager.blockOn(d);
+    };
 
-window.dir = function (o) {
-    // Python muscle memory!
-    return sorted(keys(o));
-};
+    window.dir = function (o) {
+        // Python muscle memory!
+        return sorted(keys(o));
+    };
 
-window.inspect = function (o) {
-    window._ = o;
-    if ((typeof(o) != "function" && typeof(o) != "object") || o == null) {
-        window.writeln(repr(o));
-        return;
-    }
-    var pairs = items(o);
-    if (pairs.length == 0) {
-        window.writeln(repr(o));
-        return;
-    }
-    window.writeln(TABLE({"border": "1"},
-        THEAD({"class": "invisible"}, TR(null, TD(), TD())),
-        TFOOT({"class": "invisible"}, TR(null, TD(), TD())),
-        TBODY(null,
-            map(
-                function (kv) {
-                    var click = function () {
-                        try {
-                            window.inspect(kv[1]);
-                        } catch (e) {
-                            interpreterManager.showError(e);
+    window.inspect = function (o) {
+        window._ = o;
+        if ((typeof(o) != "function" && typeof(o) != "object") || o == null) {
+            window.writeln(repr(o));
+            return;
+        }
+        var pairs = items(o);
+        if (pairs.length == 0) {
+            window.writeln(repr(o));
+            return;
+        }
+        window.writeln(TABLE({"border": "1"},
+            THEAD({"class": "invisible"}, TR(null, TD(), TD())),
+            TFOOT({"class": "invisible"}, TR(null, TD(), TD())),
+            TBODY(null,
+                map(
+                    function (kv) {
+                        var click = function () {
+                            try {
+                                window.inspect(kv[1]);
+                            } catch (e) {
+                                interpreterManager.showError(e);
+                            }
+                            return false;
                         }
-                        return false;
-                    }
-                    return TR(null,
-                        TD(null, A({href: "#", onclick: click}, kv[0])),
-                        TD(null, repr(kv[1]))
-                    );
-                },
-                pairs
+                        return TR(null,
+                            TD(null, A({href: "#", onclick: click}, kv[0])),
+                            TD(null, repr(kv[1]))
+                        );
+                    },
+                    pairs
+                )
             )
-        )
-    ));
+        ));
+    };
 };
     
 interpreterManager = new InterpreterManager();
