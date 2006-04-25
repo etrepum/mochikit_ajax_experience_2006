@@ -574,7 +574,9 @@ What about attributes?
 First parameter is either an object (attributes), or a string (text node)::
 
     var classes = repeat({"class": "itemclass"});
+
     var items = ["first", "second"];
+
     var node = UL({"class": "listclass"},
         map(LI, classes, items));
 
@@ -584,9 +586,21 @@ Alternating classes
 
 More MochiKit.Iter goodies, good for table rows::
 
-    var classes = cycle({"class": "even"}, {"class": "odd"});
+    var classes = cycle(
+        {"class": "even"},
+        {"class": "odd"});
+
     var items = ["first", "second"];
-    var node = UL(null, map(LI, classes, items));
+
+    var node = UL(null,
+        map(LI, classes, items));
+
+
+MochiKit Interpreter (Again)
+============================
+
+.. raw:: html
+    :file: includes/dominterpreter.html
 
 
 Scraping text

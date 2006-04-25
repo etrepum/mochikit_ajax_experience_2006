@@ -1,18 +1,18 @@
 /*
 
-    Interpreter: JavaScript Interactive Interpreter
+    DOMInterpreter: JavaScript Interactive DOMInterpreter
 
 */
-InterpreterManager = function () {
+DOMInterpreterManager = function () {
     bindMethods(this);
 };
 
-InterpreterManager.prototype.initialize = function () {
+DOMInterpreterManager.prototype.initialize = function () {
 
-    connect("interpreter_text", "onkeyup", this.keyUp);
-    connect("interpreter_text", "onfocus", this.setupWindowFunctions);
-    connect("interpreter_form", "onsubmit", this.submit);
-    // getElement("interpreter_text").focus();
+    connect("dominterpreter_text", "onkeyup", this.keyUp);
+    connect("dominterpreter_text", "onfocus", this.setupWindowFunctions);
+    connect("dominterpreter_form", "onsubmit", this.submit);
+    // getElement("dominterpreter_text").focus();
 
     this.banner();
     this.lines = [];
@@ -28,14 +28,14 @@ InterpreterManager.prototype.initialize = function () {
     }
 };
 
-InterpreterManager.prototype.banner = function () {
+DOMInterpreterManager.prototype.banner = function () {
     var _ua = window.navigator.userAgent;
     var ua = _ua.replace(/^Mozilla\/.*?\(.*?\)\s*/, "");
     if (ua == "") {
         // MSIE
         ua = _ua.replace(/^Mozilla\/4\.0 \(compatible; MS(IE .*?);.*$/, "$1");
     }
-    appendChildNodes("interpreter_output",
+    appendChildNodes("dominterpreter_output",
         SPAN({"class": "banner"},
             "MochiKit v" + MochiKit.Base.VERSION + " [" + ua + "]",
             BR(),
@@ -45,7 +45,7 @@ InterpreterManager.prototype.banner = function () {
     );
 };
 
-InterpreterManager.prototype.submit = function (event) {
+DOMInterpreterManager.prototype.submit = function (event) {
     if (this.blockingOn) {
         try {
             this.blockingOn.cancel();
@@ -59,12 +59,12 @@ InterpreterManager.prototype.submit = function (event) {
     event.stop();
 };
 
-InterpreterManager.prototype.doScroll = function () {
-    var p = getElement("interpreter_output").lastChild;
+DOMInterpreterManager.prototype.doScroll = function () {
+    var p = getElement("dominterpreter_output").lastChild;
     if (typeof(p) == "undefined" || p == null) {
         return;
     }
-    var area = getElement("interpreter_area");
+    var area = getElement("dominterpreter_area");
     if (area.offsetHeight > area.scrollHeight) {
         area.scrollTop = 0;
     } else {
@@ -72,12 +72,12 @@ InterpreterManager.prototype.doScroll = function () {
     }
 };
 
-InterpreterManager.prototype.moveHistory = function (dir) {
+DOMInterpreterManager.prototype.moveHistory = function (dir) {
     // totally bogus value
     if (dir == 0 || this.history.length == 0) {
         return;
     }
-    var elem = getElement("interpreter_text");
+    var elem = getElement("dominterpreter_text");
     if (this.historyPos == -1) {
         this.currentHistory = elem.value;
         if (dir > 0) {
@@ -99,19 +99,19 @@ InterpreterManager.prototype.moveHistory = function (dir) {
     elem.value = this.history[this.historyPos];
 }
 
-InterpreterManager.prototype.runMultipleLines = function (text) {
+DOMInterpreterManager.prototype.runMultipleLines = function (text) {
     var lines = rstrip(text).replace("\r\n", "\n").split(/\n/);
-    appendChildNodes("interpreter_output",
+    appendChildNodes("dominterpreter_output",
         SPAN({"class": "code"}, ">>> ", izip(lines, imap(BR, cycle([null]))))
     );
     this.runCode(text);
 }
 
-InterpreterManager.prototype.areaKeyDown = function (e) {
+DOMInterpreterManager.prototype.areaKeyDown = function (e) {
     var mod = e.modifier();
     var hasMod = mod.alt || mod.ctrl || mod.meta;
     if (e.key().string == 'KEY_ENTER' && hasMod) {
-        var elem = getElement("interpreter_textarea");
+        var elem = getElement("dominterpreter_textarea");
         var text = elem.value;
         elem.value = "";
         this.runMultipleLines(text);
@@ -119,7 +119,7 @@ InterpreterManager.prototype.areaKeyDown = function (e) {
     }
 };
 
-InterpreterManager.prototype.keyUp = function (e) {
+DOMInterpreterManager.prototype.keyUp = function (e) {
     var key = e.key();
     // if any meta key is pressed, don't handle the signal
     if (e.modifier().any) {
@@ -133,10 +133,10 @@ InterpreterManager.prototype.keyUp = function (e) {
     e.stop();
 };
 
-InterpreterManager.prototype.blockOn = function (d) {
+DOMInterpreterManager.prototype.blockOn = function (d) {
     var node = SPAN({"class": "banner"}, "blocking on " + repr(d) + "...");
     this.blockingOn = d;
-    appendChildNodes("interpreter_output", node);
+    appendChildNodes("dominterpreter_output", node);
     this.doScroll();
     d.addBoth(function (res) {
         swapDOM(node);
@@ -150,11 +150,11 @@ InterpreterManager.prototype.blockOn = function (d) {
     d.addCallbacks(this.showResult, this.showError);
 };
 
-InterpreterManager.prototype.showError = function (e) {
+DOMInterpreterManager.prototype.showError = function (e) {
     if (typeof(e) != "object") {
         e = new Error(e);
     }
-    appendChildNodes("interpreter_output",
+    appendChildNodes("dominterpreter_output",
         SPAN({"class": "error"}, "Error:"),
         TABLE({"class": "error"},
             THEAD({"class": "invisible"}, TD({"colspan": 2})),
@@ -208,10 +208,10 @@ EvalFunctions = {
     }
 };
         
-InterpreterManager.prototype.doEval = EvalFunctions.choose();
+DOMInterpreterManager.prototype.doEval = EvalFunctions.choose();
 
-InterpreterManager.prototype.doSubmit = function () {
-    var elem = getElement("interpreter_text");
+DOMInterpreterManager.prototype.doSubmit = function () {
+    var elem = getElement("dominterpreter_text");
     var code = elem.value;
     elem.value = "";
     var isContinuation = false;
@@ -219,7 +219,7 @@ InterpreterManager.prototype.doSubmit = function () {
         isContinuation = true;
         code = code.substr(0, code.length - 2);
     }
-    appendChildNodes("interpreter_output",
+    appendChildNodes("dominterpreter_output",
         SPAN({"class": "code"}, ">>> ", code),
         BR()
     );
@@ -236,7 +236,7 @@ InterpreterManager.prototype.doSubmit = function () {
     return;
 };
 
-InterpreterManager.prototype.runCode = function (allCode) {
+DOMInterpreterManager.prototype.runCode = function (allCode) {
     var res;
     try {
         res = this.doEval(allCode);
@@ -248,38 +248,25 @@ InterpreterManager.prototype.runCode = function (allCode) {
     this.showResult(res);
 };
 
-InterpreterManager.prototype.showResult = function (res) {
-    if (typeof(res) != "undefined") {
-        window._ = res;
-    }
-    if (typeof(res) != "undefined") {
-        appendChildNodes("interpreter_output",
-            SPAN({"class": "data"}, repr(res)),
-            BR()
-        );
-        this.doScroll();
-    }
-};
-
-InterpreterManager.prototype.setupWindowFunctions = function () {
+DOMInterpreterManager.prototype.setupWindowFunctions = function () {
     window.writeln = function () {
-        appendChildNodes("interpreter_output",
+        appendChildNodes("dominterpreter_output",
             SPAN({"class": "data"}, arguments),
             BR()
         );
-        interpreterManager.doScroll();
+        dominterpreterManager.doScroll();
     };
 
     window.clear = function () {
-        replaceChildNodes("interpreter_output");
-        getElement("interpreter_area").scrollTop = 0;
+        replaceChildNodes("dominterpreter_output");
+        getElement("dominterpreter_area").scrollTop = 0;
     };
 
     window.blockOn = function (d) {
         if (!(d instanceof Deferred)) {
             throw new TypeError(repr(d) + " is not a Deferred!");
         }
-        interpreterManager.blockOn(d);
+        dominterpreterManager.blockOn(d);
     };
 
     window.dir = function (o) {
@@ -308,7 +295,7 @@ InterpreterManager.prototype.setupWindowFunctions = function () {
                             try {
                                 window.inspect(kv[1]);
                             } catch (e) {
-                                interpreterManager.showError(e);
+                                dominterpreterManager.showError(e);
                             }
                             return false;
                         }
@@ -322,7 +309,21 @@ InterpreterManager.prototype.setupWindowFunctions = function () {
             )
         ));
     };
+}
+
+DOMInterpreterManager.prototype.showResult = function (res) {
+    if (typeof(res) != "undefined") {
+        window._ = res;
+    }
+    if (typeof(res) != "undefined") {
+        appendChildNodes("dominterpreter_output",
+            SPAN({"class": "data"}, repr(res)),
+            BR()
+        );
+        this.doScroll();
+    }
 };
+
     
-interpreterManager = new InterpreterManager();
-addLoadEvent(interpreterManager.initialize);
+dominterpreterManager = new DOMInterpreterManager();
+addLoadEvent(dominterpreterManager.initialize);

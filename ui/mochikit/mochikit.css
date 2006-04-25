@@ -28,3 +28,6 @@ body {
     color: rgb(75, 129, 188);
     font-family: Trebuchet MS,verdana,sans-serif;
 }
+
+@import url(examples/interpreter.css);
+@import url(examples/dominterpreter.css);
