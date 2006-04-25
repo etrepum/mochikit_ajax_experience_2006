@@ -878,6 +878,13 @@ Custom Event Object
 * e.stop() does both W3C stopPropagation and preventDefault for convenience
 
 
+Mouse Events
+============
+
+.. raw:: html
+    :file: includes/draggable.html
+
+
 Signal Anything
 ===============
 
