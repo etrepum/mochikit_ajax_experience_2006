@@ -8,10 +8,15 @@ KeyEvents = {
     handled: false,
     updateModifiers: function(e) {
         var modifiers = e.modifier();
-        replaceChildNodes('shift', modifiers.shift);
-        replaceChildNodes('ctrl', modifiers.ctrl);
-        replaceChildNodes('alt', modifiers.alt);
-        replaceChildNodes('meta', modifiers.meta);
+        var keys = ['shift', 'alt', 'ctrl' ,'meta'];
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            if (modifiers[k]) {
+                removeElementClass('k_' + k, 'keyoff');
+            } else {
+                addElementClass('k_' + k, 'keyoff');
+            }
+        }
     }
 };
 
