@@ -555,7 +555,8 @@ function startup() {
         // XXX: mochi stuff
         function e_wrap(fn) {
             return function (e) {
-                if (e.type() == "keyup" && e.modifier().ctrl && 
+                if (e.type() == "keyup" && 
+                    (e.modifier().ctrl || e.modifier().alt) && 
                         e.key().string == "KEY_I") {
                     is_using_s5 = !is_using_s5;
                     logDebug("Toggled interactive mode " +
