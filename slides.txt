@@ -885,12 +885,28 @@ Mouse Events
     :file: includes/draggable.html
 
 
+Keyboard Events
+===============
+
+.. raw:: html
+    :file: includes/key_events.html
+
+
 Signal Anything
 ===============
 
 * You can use MochiKit.Signal to broadcast your own events
 * connect() and disconnect() are the same
 * signal(src, signal, args...) to fire the event
+
+
+MochiKit Support
+================
+
+- Check the documentation
+- Ask on the mailing list
+- Check the wiki/bug tracker
+- #mochikit on irc.freenode.net
 
 
 MochiKit on the Web
@@ -904,12 +920,3 @@ Bug tracker/Wiki:
 
 Subversion repository:
     http://svn.mochikit.com/
-
-
-MochiKit Support
-================
-
-- Check the documentation
-- Ask on the mailing list
-- Check the wiki/bug tracker
-- #mochikit on irc.freenode.net

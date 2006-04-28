@@ -432,9 +432,10 @@ ul.auto-toc {
 <li><a class="reference" href="#connect-to-the-dom" id="id73" name="id73">connect to the DOM</a></li>
 <li><a class="reference" href="#custom-event-object" id="id74" name="id74">Custom Event Object</a></li>
 <li><a class="reference" href="#mouse-events" id="id75" name="id75">Mouse Events</a></li>
-<li><a class="reference" href="#signal-anything" id="id76" name="id76">Signal Anything</a></li>
-<li><a class="reference" href="#mochikit-on-the-web" id="id77" name="id77">MochiKit on the Web</a></li>
+<li><a class="reference" href="#keyboard-events" id="id76" name="id76">Keyboard Events</a></li>
+<li><a class="reference" href="#signal-anything" id="id77" name="id77">Signal Anything</a></li>
 <li><a class="reference" href="#mochikit-support" id="id78" name="id78">MochiKit Support</a></li>
+<li><a class="reference" href="#mochikit-on-the-web" id="id79" name="id79">MochiKit on the Web</a></li>
 </ul>
 </div>
 
@@ -1271,12 +1272,63 @@ connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
     <h2 id="drag_monitor"></h2>
 </div>
 </div>
+<div class="slide" id="keyboard-events">
+<h1>Keyboard Events</h1>
+    <script type="text/javascript" src="ui/mochikit/examples/key_events.js"></script>
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Key Code</th>
+            <th>Key String</th>
+        </tr>
+        <tr>
+            <td>onkeydown</td>
+            <td id="onkeydown_code">-</td>
+            <td id="onkeydown_string">-</td>
+        </tr>
+        <tr>
+            <td>onkeyup</td>
+            <td id="onkeyup_code">-</td>
+            <td id="onkeyup_string">-</td>
+        </tr>
+        <tr>
+            <td>onkeypress</td>
+            <td id="onkeypress_code">-</td>
+            <td id="onkeypress_string">-</td>
+        </tr>
+    </table>
+    
+    <h3>Modifiers</h3>
+    <table>
+        <tr>
+            <th>Shift</th>
+            <th>Ctrl</th>
+            <th>Alt (Option)</th>
+            <th>Meta (Command)</th>
+        </tr>
+        <tr>
+            <td id="shift">-</td>
+            <td id="ctrl">-</td>
+            <td id="alt">-</td>
+            <td id="meta">-</td>
+        </tr>
+    </table>    
+</div>
 <div class="slide" id="signal-anything">
 <h1>Signal Anything</h1>
 <ul class="simple">
 <li>You can use MochiKit.Signal to broadcast your own events</li>
 <li>connect() and disconnect() are the same</li>
 <li>signal(src, signal, args...) to fire the event</li>
+</ul>
+</div>
+<div class="slide" id="mochikit-support">
+<h1>MochiKit Support</h1>
+<ul class="simple">
+<li>Check the documentation</li>
+<li>Ask on the mailing list</li>
+<li>Check the wiki/bug tracker</li>
+<li>#mochikit on irc.freenode.net</li>
 </ul>
 </div>
 <div class="slide" id="mochikit-on-the-web">
@@ -1289,15 +1341,6 @@ connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
 <dt>Subversion repository:</dt>
 <dd><a class="reference" href="http://svn.mochikit.com/">http://svn.mochikit.com/</a></dd>
 </dl>
-</div>
-<div class="slide" id="mochikit-support">
-<h1>MochiKit Support</h1>
-<ul class="simple">
-<li>Check the documentation</li>
-<li>Ask on the mailing list</li>
-<li>Check the wiki/bug tracker</li>
-<li>#mochikit on irc.freenode.net</li>
-</ul>
 </div>
 </div>
 </body>

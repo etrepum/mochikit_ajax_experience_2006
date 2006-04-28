@@ -29,3 +29,6 @@ body {
     color: rgb(75, 129, 188);
     font-family: Trebuchet MS,verdana,sans-serif;
 }
+
+#controls #navLinks a { background: transparent; }
+#controls #navList #jumplist { background: transparent; }
