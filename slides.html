@@ -1020,7 +1020,7 @@ support.</p>
 <li>Full CSS3 color model with alpha</li>
 <li>NSColor-like API (from Cocoa)</li>
 <li>Works in RGB, HSV, HSL</li>
-<li>Normalized, all components from [0.0, 1.0]</li>
+<li>Normalized to [0, 1.0]</li>
 </ul>
 </div>
 <div class="slide" id="components-to-color">
@@ -1028,23 +1028,27 @@ support.</p>
 <ul class="simple">
 <li>Color.fromRGB(r, g, b, alpha=1.0)</li>
 <li>fromHSL, fromHSV</li>
-<li>Will also take objects, e.g. {r: 1, g: 0, b: 0, a: 1}</li>
+<li>Also {r: 1, g: 0, b: 0, a: 1}</li>
 </ul>
 </div>
 <div class="slide" id="string-to-color">
 <h1>String to Color</h1>
 <dl class="docutils">
 <dt>Color.fromString(str):</dt>
-<dd>Any valid CSS color description.  &quot;rgb(...)&quot;, &quot;hsl(...)&quot;, &quot;#RRGGBB&quot;, &quot;blue&quot;</dd>
+<dd>Color from any valid CSS color description</dd>
 </dl>
-<p>Implementations in fromRGBString, fromHSLString, fromHexString, fromName.</p>
+<ul class="simple">
+<li>&quot;rgb(...)&quot;</li>
+<li>&quot;hsl(...)&quot;</li>
+<li>&quot;#RRGGBB&quot;</li>
+<li>&quot;blue&quot;</li>
+</ul>
 </div>
 <div class="slide" id="dom-to-color">
 <h1>DOM to Color</h1>
 <ul class="simple">
 <li>Color.fromBackground(node)</li>
-<li>Color.fromComputedStyle(node, style, css)</li>
-<li>Color.fromText(node)</li>
+<li>fromComputedStyle, fromText, ...</li>
 </ul>
 </div>
 <div class="slide" id="nscolor-colors">
@@ -1113,11 +1117,11 @@ support.</p>
 <div class="slide" id="network-events">
 <h1>Network Events</h1>
 <dl class="docutils">
-<dt>doSimpleXMLHttpRequest(url[, queryArguments]):</dt>
+<dt>doSimpleXMLHttpRequest(url):</dt>
 <dd>Deferred from XMLHttpRequest GET</dd>
-<dt>loadJSONDoc(url[, queryArguments]):</dt>
+<dt>loadJSONDoc(url):</dt>
 <dd>Deferred from XMLHttpRequest GET then eval</dd>
-<dt>sendXMLHttpRequest(req, content):</dt>
+<dt>sendXMLHttpRequest(req, data):</dt>
 <dd>Deferred from async XMLHttpRequest</dd>
 </dl>
 </div>
@@ -1187,13 +1191,13 @@ connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
 <div class="slide" id="custom-event-object">
 <h1>Custom Event Object</h1>
 <ul class="simple">
-<li>Consistent event object, NOT the browser's.</li>
-<li>e.type() is the event type (no &quot;on&quot; prefix)</li>
+<li>Consistent event object!!</li>
+<li>e.type() is the event type</li>
 <li>e.target() is the event target</li>
 <li>e.mouse() has mouse coordinates</li>
 <li>e.key() for keyboard state</li>
 <li>e.modifiers() for keyboard modifiers</li>
-<li>e.stop() stopPropagation and preventDefault</li>
+<li>e.stop() to stop</li>
 </ul>
 </div>
 <div class="slide" id="mouse-events">
@@ -1250,7 +1254,7 @@ the consistent naming of keys.</p>
 <ul class="simple">
 <li>Broadcast your own events!</li>
 <li>connect() and disconnect() are the same</li>
-<li>signal(src, signal, args...) to fire the event</li>
+<li>signal(src, signal, args...) to fire</li>
 </ul>
 </div>
 <div class="slide" id="mochikit-support">

@@ -641,7 +641,7 @@ MochiKit.Color
 * Full CSS3 color model with alpha
 * NSColor-like API (from Cocoa)
 * Works in RGB, HSV, HSL
-* Normalized, all components from [0.0, 1.0]
+* Normalized to [0, 1.0]
 
 
 Components to Color
@@ -649,24 +649,26 @@ Components to Color
 
 * Color.fromRGB(r, g, b, alpha=1.0)
 * fromHSL, fromHSV
-* Will also take objects, e.g. {r: 1, g: 0, b: 0, a: 1}
+* Also {r: 1, g: 0, b: 0, a: 1}
 
 
 String to Color
 ===============
 
 Color.fromString(str):
-    Any valid CSS color description.  "rgb(...)", "hsl(...)", "#RRGGBB", "blue"
+    Color from any valid CSS color description
 
-Implementations in fromRGBString, fromHSLString, fromHexString, fromName.
+- "rgb(...)"
+- "hsl(...)"
+- "#RRGGBB"
+- "blue"
 
 
 DOM to Color
 ============
 
 - Color.fromBackground(node)
-- Color.fromComputedStyle(node, style, css)
-- Color.fromText(node)
+- fromComputedStyle, fromText, ...
 
 
 NSColor colors
@@ -740,13 +742,13 @@ callLater(seconds, func, arguments...):
 Network Events
 ==============
 
-doSimpleXMLHttpRequest(url[, queryArguments]):
+doSimpleXMLHttpRequest(url):
     Deferred from XMLHttpRequest GET
 
-loadJSONDoc(url[, queryArguments]):
+loadJSONDoc(url):
     Deferred from XMLHttpRequest GET then eval
 
-sendXMLHttpRequest(req, content):
+sendXMLHttpRequest(req, data):
     Deferred from async XMLHttpRequest
 
 
@@ -821,13 +823,13 @@ Works everywhere::
 Custom Event Object
 ===================
 
-* Consistent event object, NOT the browser's.
-* e.type() is the event type (no "on" prefix)
+* Consistent event object!!
+* e.type() is the event type
 * e.target() is the event target
 * e.mouse() has mouse coordinates
 * e.key() for keyboard state
 * e.modifiers() for keyboard modifiers
-* e.stop() stopPropagation and preventDefault
+* e.stop() to stop
 
 
 Mouse Events
@@ -860,7 +862,7 @@ Signal Anything
 
 * Broadcast your own events!
 * connect() and disconnect() are the same
-* signal(src, signal, args...) to fire the event
+* signal(src, signal, args...) to fire
 
 
 MochiKit Support
