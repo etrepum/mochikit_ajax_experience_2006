@@ -407,7 +407,7 @@ ul.auto-toc {
 <li><a class="reference" href="#flattening-for-the-dom" id="id48" name="id48">Flattening for the DOM</a></li>
 <li><a class="reference" href="#attributes" id="id49" name="id49">Attributes</a></li>
 <li><a class="reference" href="#alternating" id="id50" name="id50">Alternating</a></li>
-<li><a class="reference" href="#mochikit-interpreter-again" id="id51" name="id51">MochiKit Interpreter (Again)</a></li>
+<li><a class="reference" href="#interpreter-dom" id="id51" name="id51">Interpreter DOM</a></li>
 <li><a class="reference" href="#scraping-text" id="id52" name="id52">Scraping Text</a></li>
 <li><a class="reference" href="#forms" id="id53" name="id53">Forms</a></li>
 <li><a class="reference" href="#manipulating-dom" id="id54" name="id54">Manipulating DOM</a></li>
@@ -595,8 +595,8 @@ registerComparator(&quot;compareDOM&quot;,
 <li><p class="first">queryString(&quot;formNode&quot;) == &quot;foo=1&amp;bar=2&quot;, given:</p>
 <pre class="literal-block">
 &lt;form id=&quot;formNode&quot;&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;foo&quot; value=&quot;1&quot; /&gt;
-    &lt;input type=&quot;text&quot; name=&quot;bar&quot; value=&quot;2&quot; /&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;foo&quot; value=&quot;1&quot; /&gt;
+  &lt;input type=&quot;text&quot; name=&quot;bar&quot; value=&quot;2&quot; /&gt;
 &lt;/form&gt;
 </pre>
 </li>
@@ -619,9 +619,9 @@ registerComparator(&quot;compareDOM&quot;,
 <h1>Object Introspection</h1>
 <dl class="docutils">
 <dt>keys(obj):</dt>
-<dd>Array of every property on obj</dd>
+<dd>Array of obj's properties</dd>
 <dt>items(obj):</dt>
-<dd>Array of every [property, value] on obj</dd>
+<dd>Array of obj's [property, value]</dd>
 </dl>
 </div>
 <div class="slide" id="function-functions">
@@ -642,7 +642,7 @@ registerComparator(&quot;compareDOM&quot;,
 <dt>concat(lst[, ...]):</dt>
 <dd>concatenates Arrays</dd>
 <dt>extend(self, seq, skip=0):</dt>
-<dd>extends a list in-place</dd>
+<dd>extends Array in-place</dd>
 <dt>flattenArguments(args[, ...]):</dt>
 <dd>recursively flatten arguments to single Array</dd>
 </dl>
@@ -653,7 +653,7 @@ registerComparator(&quot;compareDOM&quot;,
 <dt>findValue(lst, value):</dt>
 <dd>finds index of value</dd>
 <dt>findIdentical(lst, value):</dt>
-<dd>finds index of identival value</dd>
+<dd>finds index of identical value</dd>
 <dt>listMin(lst):</dt>
 <dd>finds least item in lst</dd>
 <dt>listMax(lst):</dt>
@@ -664,11 +664,11 @@ registerComparator(&quot;compareDOM&quot;,
 <h1>Higher-order Array</h1>
 <dl class="docutils">
 <dt>filter(predicate, lst):</dt>
-<dd>new Array where predicate(lst[n]) is true</dd>
+<dd>Array where predicate(lst[n])</dd>
 <dt>map(func, lst):</dt>
-<dd>new Array, [func(lst[0]), func(lst[1]), ...]</dd>
-<dt>keyComparator(key, ...):</dt>
-<dd>new sort function, compare(a[key], b[key])</dd>
+<dd>[func(lst[0]), ...]</dd>
+<dt>keyComparator(key):</dt>
+<dd>compare(a[key], b[key])</dd>
 </dl>
 </div>
 <div class="slide" id="mochikit-iter">
@@ -725,7 +725,7 @@ forEach(iterable, function (item) {
 <dt>count(n=0):</dt>
 <dd>n, n + 1, n + 2, ...</dd>
 <dt>cycle(iterable):</dt>
-<dd>while (true) { iterable[0], ..., iterable[N] }</dd>
+<dd>while (1) { iterable[0], ... }</dd>
 <dt>repeat(item):</dt>
 <dd>item, item, item, item, ...</dd>
 </dl>
@@ -773,16 +773,16 @@ forEach(iterable, function (item) {
 <ul class="simple">
 <li>JavaScript has no sprintf</li>
 <li>Thousands separators help readability</li>
-<li>Based on Java's Number Format Pattern Syntax</li>
+<li>Java's Number Format Pattern Syntax</li>
 </ul>
 </div>
 <div class="slide" id="whitespace-assassins">
 <h1>Whitespace Assassins</h1>
 <dl class="docutils">
 <dt>lstrip(str):</dt>
-<dd>strip only leading whitespace</dd>
+<dd>strip leading whitespace</dd>
 <dt>rstrip(str):</dt>
-<dd>strip only trailing whitespace</dd>
+<dd>strip trailing whitespace</dd>
 <dt>strip(str):</dt>
 <dd>strip leading and trailing whitespace</dd>
 </dl>
@@ -798,8 +798,8 @@ forEach(iterable, function (item) {
 <h1>Currency Formatter Example</h1>
 <p>Currency:</p>
 <pre class="literal-block">
-&gt;&gt;&gt; dollarFormat = numberFormatter(&quot;$###,###.##&quot;)
-&gt;&gt;&gt; dollarFormat(1234567.89)
+&gt;&gt;&gt; money = numberFormatter(&quot;$###,###.##&quot;)
+&gt;&gt;&gt; money(1234567.89)
 &quot;$1,234,567.89&quot;
 </pre>
 </div>
@@ -807,8 +807,8 @@ forEach(iterable, function (item) {
 <h1>Percent Formatter Example</h1>
 <p>Percent:</p>
 <pre class="literal-block">
-&gt;&gt;&gt; percentFormat = numberFormatter(&quot;###,###%&quot;)
-&gt;&gt;&gt; percentFormat(123.45)
+&gt;&gt;&gt; percent = numberFormatter(&quot;###,###%&quot;)
+&gt;&gt;&gt; percent(123.45)
 &quot;12,345%&quot;
 </pre>
 </div>
@@ -843,7 +843,7 @@ forEach(iterable, function (item) {
 <h1>Bookmarklet Debugging</h1>
 <p>Pop-up MochiKit.LoggingPane:</p>
 <pre class="literal-block">
-javascript:MochiKit.Logging.logger.debuggingBookmarklet()
+javascript:logger.debuggingBookmarklet()
 </pre>
 </div>
 <div class="slide" id="mochikit-loggingpane">
@@ -943,8 +943,8 @@ var node = UL(null,
     map(LI, classes, items));
 </pre>
 </div>
-<div class="slide" id="mochikit-interpreter-again">
-<h1>MochiKit Interpreter (Again)</h1>
+<div class="slide" id="interpreter-dom">
+<h1>Interpreter DOM</h1>
 <div id="dominterpreter_example">
     <form id="dominterpreter_form" autocomplete="off">
         <div id="dominterpreter_area">
@@ -990,9 +990,9 @@ support.</p>
 <div class="slide" id="manipulating-dom">
 <h1>Manipulating DOM</h1>
 <dl class="docutils">
-<dt>appendChildNodes(parentNode, childNode...):</dt>
+<dt>appendChildNodes(parent, children...):</dt>
 <dd>Add nodes via createDOM</dd>
-<dt>replaceChildNodes(parentNode, childNode...):</dt>
+<dt>replaceChildNodes(parent, children...):</dt>
 <dd>Remove all, then append</dd>
 <dt>swapDOM(dest, src):</dt>
 <dd>Replace dest with src (or remove)</dd>
@@ -1004,7 +1004,7 @@ support.</p>
 <dt>setNodeAttribute(node, attr, value):</dt>
 <dd>node attribute attr=value</dd>
 <dt>updateNodeAttributes(node, attrs):</dt>
-<dd>Set the node attributes from object attrs</dd>
+<dd>node attributes from object attrs</dd>
 </dl>
 </div>
 <div class="slide" id="dom-gotchas">

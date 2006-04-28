@@ -169,8 +169,8 @@ queryString and DOM
 * queryString("formNode") == "foo=1&bar=2", given::
 
     <form id="formNode">
-        <input type="hidden" name="foo" value="1" />
-        <input type="text" name="bar" value="2" />
+      <input type="hidden" name="foo" value="1" />
+      <input type="text" name="bar" value="2" />
     </form>
 
 
@@ -194,10 +194,10 @@ Object Introspection
 ====================
 
 keys(obj):
-    Array of every property on obj
+    Array of obj's properties
 
 items(obj):
-    Array of every [property, value] on obj
+    Array of obj's [property, value]
 
 
 Function Functions
@@ -222,7 +222,7 @@ concat(lst[, ...]):
     concatenates Arrays
 
 extend(self, seq, skip=0):
-    extends a list in-place
+    extends Array in-place
 
 flattenArguments(args[, ...]):
     recursively flatten arguments to single Array
@@ -235,7 +235,7 @@ findValue(lst, value):
     finds index of value
 
 findIdentical(lst, value):
-    finds index of identival value
+    finds index of identical value
 
 listMin(lst):
     finds least item in lst
@@ -248,13 +248,13 @@ Higher-order Array
 ==================
 
 filter(predicate, lst):
-    new Array where predicate(lst[n]) is true
+    Array where predicate(lst[n])
 
 map(func, lst):
-    new Array, [func(lst[0]), func(lst[1]), ...]
+    [func(lst[0]), ...]
 
-keyComparator(key, ...):
-    new sort function, compare(a[key], b[key])
+keyComparator(key):
+    compare(a[key], b[key])
 
 
 MochiKit.Iter
@@ -318,7 +318,7 @@ count(n=0):
     n, n + 1, n + 2, ...
 
 cycle(iterable):
-    while (true) { iterable[0], ..., iterable[N] }
+    while (1) { iterable[0], ... }
 
 repeat(item):
     item, item, item, item, ...
@@ -372,17 +372,17 @@ MochiKit.Format
 
 * JavaScript has no sprintf
 * Thousands separators help readability
-* Based on Java's Number Format Pattern Syntax
+* Java's Number Format Pattern Syntax
 
 
 Whitespace Assassins
 ====================
 
 lstrip(str):
-    strip only leading whitespace
+    strip leading whitespace
 
 rstrip(str):
-    strip only trailing whitespace
+    strip trailing whitespace
 
 strip(str):
     strip leading and trailing whitespace
@@ -400,8 +400,8 @@ Currency Formatter Example
     
 Currency::
 
-    >>> dollarFormat = numberFormatter("$###,###.##")
-    >>> dollarFormat(1234567.89)
+    >>> money = numberFormatter("$###,###.##")
+    >>> money(1234567.89)
     "$1,234,567.89"
 
 
@@ -410,8 +410,8 @@ Percent Formatter Example
 
 Percent::
 
-    >>> percentFormat = numberFormatter("###,###%")
-    >>> percentFormat(123.45)
+    >>> percent = numberFormatter("###,###%")
+    >>> percent(123.45)
     "12,345%"
 
 
@@ -449,7 +449,7 @@ Bookmarklet Debugging
 
 Pop-up MochiKit.LoggingPane::
 
-    javascript:MochiKit.Logging.logger.debuggingBookmarklet()
+    javascript:logger.debuggingBookmarklet()
 
 
 
@@ -562,8 +562,8 @@ MochiKit.Iter good for table rows::
         map(LI, classes, items));
 
 
-MochiKit Interpreter (Again)
-============================
+Interpreter DOM
+===============
 
 .. raw:: html
     :file: includes/dominterpreter.html
@@ -608,10 +608,10 @@ JavaScript::
 Manipulating DOM
 ================
 
-appendChildNodes(parentNode, childNode...):
+appendChildNodes(parent, children...):
     Add nodes via createDOM
 
-replaceChildNodes(parentNode, childNode...):
+replaceChildNodes(parent, children...):
     Remove all, then append
 
 swapDOM(dest, src):
@@ -625,7 +625,7 @@ setNodeAttribute(node, attr, value):
     node attribute attr=value 
 
 updateNodeAttributes(node, attrs):
-    Set the node attributes from object attrs
+    node attributes from object attrs
     
 
 DOM Gotchas
