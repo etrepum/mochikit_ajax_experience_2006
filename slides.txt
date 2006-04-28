@@ -676,7 +676,7 @@ DOM to Color
 - fromComputedStyle, fromText, ...
 
 
-NSColor colors
+NSColor Colors
 ==============
 
 Cocoa-based constructors for basic colors
@@ -685,7 +685,7 @@ Cocoa-based constructors for basic colors
 - blueColor, transparentColor, ...
 
 
-Mixing colors
+Mixing Colors
 =============
 
 - color.blendedColor(otherColor, fraction)
