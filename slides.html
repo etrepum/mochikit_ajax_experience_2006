@@ -526,6 +526,9 @@ ul.auto-toc {
     </form>
 </div>
 <script type="text/javascript" src="ui/mochikit/examples/interpreter.js"></script>
+<p class="handout">In-line demo of the MochiKit interpreter example.
+The advantages of repr vs. toString and some of the interpreter's features
+will be demonstrated during this slide.</p>
 </div>
 <div class="slide" id="unreliable-operators">
 <h1>Unreliable Operators</h1>
@@ -593,7 +596,7 @@ registerComparator(&quot;compareDOM&quot;,
 <pre class="literal-block">
 &lt;form id=&quot;formNode&quot;&gt;
     &lt;input type=&quot;hidden&quot; name=&quot;foo&quot; value=&quot;1&quot; /&gt;
-    &lt;input type=&quot;hidden&quot; name=&quot;bar&quot; value=&quot;2&quot; /&gt;
+    &lt;input type=&quot;text&quot; name=&quot;bar&quot; value=&quot;2&quot; /&gt;
 &lt;/form&gt;
 </pre>
 </li>
@@ -647,14 +650,14 @@ registerComparator(&quot;compareDOM&quot;,
 <div class="slide" id="array-searching">
 <h1>Array Searching</h1>
 <dl class="docutils">
-<dt>findValue(lst, value, start=0, end=lst.length):</dt>
-<dd>finds index of value (using compare)</dd>
-<dt>findIdentical(lst, value, start=0, end=lst.length):</dt>
-<dd>finds index of value (using ===)</dd>
+<dt>findValue(lst, value):</dt>
+<dd>finds index of value</dd>
+<dt>findIdentical(lst, value):</dt>
+<dd>finds index of identival value</dd>
 <dt>listMin(lst):</dt>
-<dd>finds least item in lst (using compare)</dd>
+<dd>finds least item in lst</dd>
 <dt>listMax(lst):</dt>
-<dd>finds greatest item in lst (using compare)</dd>
+<dd>finds greatest item in lst</dd>
 </dl>
 </div>
 <div class="slide" id="higher-order-array">
@@ -663,9 +666,9 @@ registerComparator(&quot;compareDOM&quot;,
 <dt>filter(predicate, lst):</dt>
 <dd>new Array where predicate(lst[n]) is true</dd>
 <dt>map(func, lst):</dt>
-<dd>new Array of [func(lst[0]), func(lst[1]), ...]</dd>
+<dd>new Array, [func(lst[0]), func(lst[1]), ...]</dd>
 <dt>keyComparator(key, ...):</dt>
-<dd>new sort function that does compare(a[key], b[key])</dd>
+<dd>new sort function, compare(a[key], b[key])</dd>
 </dl>
 </div>
 <div class="slide" id="mochikit-iter">
@@ -686,8 +689,8 @@ StopIteration is thrown.</li>
 <dd>Iterate and ignore results</dd>
 <dt>list(iterable):</dt>
 <dd>new Array</dd>
-<dt>sorted(iterable, cmp=compare):</dt>
-<dd>sorted Array using cmp</dd>
+<dt>sorted(iterable):</dt>
+<dd>sorted Array</dd>
 <dt>sum(iterable, start=0):</dt>
 <dd>Return start plus sum of items</dd>
 </dl>
@@ -776,12 +779,12 @@ forEach(iterable, function (item) {
 <div class="slide" id="whitespace-assassins">
 <h1>Whitespace Assassins</h1>
 <dl class="docutils">
-<dt>strip(str, chars=&quot;\s&quot;):</dt>
-<dd>strip leading and trailing whitespace</dd>
-<dt>lstrip(str, chars=&quot;\s&quot;):</dt>
+<dt>lstrip(str):</dt>
 <dd>strip only leading whitespace</dd>
-<dt>rstrip(str, chars=&quot;\s&quot;):</dt>
+<dt>rstrip(str):</dt>
 <dd>strip only trailing whitespace</dd>
+<dt>strip(str):</dt>
+<dd>strip leading and trailing whitespace</dd>
 </dl>
 </div>
 <div class="slide" id="number-formatting">
@@ -864,6 +867,7 @@ createLoggingPane(true)
 <div class="slide" id="inline-loggingpane-example">
 <h1>Inline LoggingPane Example</h1>
 <a href="javascript:MochiKit.LoggingPane.createLoggingPane(true)">Where's the LoggingPane?</a>
+<p class="handout">In-line demo of the MochiKit LoggingPane.</p>
 </div>
 <div class="slide" id="mochikit-dom">
 <h1>MochiKit.DOM</h1>
@@ -952,6 +956,8 @@ var node = UL(null,
     </form>
 </div>
 <script type="text/javascript" src="ui/mochikit/examples/dominterpreter.js"></script>
+<p class="handout">Another in-line interpreter demo, this time showing off MochiKit's DOM
+support.</p>
 </div>
 <div class="slide" id="scraping-text">
 <h1>Scraping Text</h1>
@@ -1197,6 +1203,8 @@ connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
 <div id="drag_monitor_container">
     <h2 id="drag_monitor"></h2>
 </div>
+<p class="handout">The slide's logo will be dragged during this slide, while displaying live
+pixel coordinates.</p>
 </div>
 <div class="slide" id="keyboard-events">
 <h1>Keyboard Events</h1>
@@ -1233,6 +1241,9 @@ connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
             <th class="keyoff" id="k_meta">Meta</th>
         </tr>
     </table>    
+<p class="handout">An in-line version of the key_events demo will be shown during this slide,
+showing capture of onkeypress, onkeydown, onkeyup events.  Also shows
+the consistent naming of keys.</p>
 </div>
 <div class="slide" id="signal-anything">
 <h1>Signal Anything</h1>

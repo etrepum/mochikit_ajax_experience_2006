@@ -94,6 +94,12 @@ MochiKit Interpreter
 .. raw:: html
     :file: includes/interpreter.html
 
+.. class:: handout
+
+In-line demo of the MochiKit interpreter example.
+The advantages of repr vs. toString and some of the interpreter's features
+will be demonstrated during this slide.
+
 
 Unreliable Operators
 ====================
@@ -164,7 +170,7 @@ queryString and DOM
 
     <form id="formNode">
         <input type="hidden" name="foo" value="1" />
-        <input type="hidden" name="bar" value="2" />
+        <input type="text" name="bar" value="2" />
     </form>
 
 
@@ -225,17 +231,17 @@ flattenArguments(args[, ...]):
 Array Searching
 ===============
 
-findValue(lst, value, start=0, end=lst.length):
-    finds index of value (using compare)
+findValue(lst, value):
+    finds index of value
 
-findIdentical(lst, value, start=0, end=lst.length):
-    finds index of value (using ===)
+findIdentical(lst, value):
+    finds index of identival value
 
 listMin(lst):
-    finds least item in lst (using compare)
+    finds least item in lst
 
 listMax(lst):
-    finds greatest item in lst (using compare)
+    finds greatest item in lst
 
 
 Higher-order Array
@@ -245,10 +251,10 @@ filter(predicate, lst):
     new Array where predicate(lst[n]) is true
 
 map(func, lst):
-    new Array of [func(lst[0]), func(lst[1]), ...]
+    new Array, [func(lst[0]), func(lst[1]), ...]
 
 keyComparator(key, ...):
-    new sort function that does compare(a[key], b[key])
+    new sort function, compare(a[key], b[key])
 
 
 MochiKit.Iter
@@ -272,8 +278,8 @@ exhaust(iterable):
 list(iterable):
     new Array
 
-sorted(iterable, cmp=compare):
-    sorted Array using cmp
+sorted(iterable):
+    sorted Array
 
 sum(iterable, start=0):
     Return start plus sum of items
@@ -372,14 +378,14 @@ MochiKit.Format
 Whitespace Assassins
 ====================
 
-strip(str, chars="\\s"):
-    strip leading and trailing whitespace
-
-lstrip(str, chars="\\s"):
+lstrip(str):
     strip only leading whitespace
 
-rstrip(str, chars="\\s"):
+rstrip(str):
     strip only trailing whitespace
+
+strip(str):
+    strip leading and trailing whitespace
 
 
 Number Formatting
@@ -472,6 +478,9 @@ Inline LoggingPane Example
 .. raw:: html
     :file: includes/logging_pane.html
 
+.. class:: handout
+
+In-line demo of the MochiKit LoggingPane.
 
 MochiKit.DOM
 ============
@@ -558,6 +567,11 @@ MochiKit Interpreter (Again)
 
 .. raw:: html
     :file: includes/dominterpreter.html
+
+.. class:: handout
+
+Another in-line interpreter demo, this time showing off MochiKit's DOM
+support.
 
 
 Scraping Text
@@ -822,12 +836,23 @@ Mouse Events
 .. raw:: html
     :file: includes/draggable.html
 
+.. class:: handout
+
+The slide's logo will be dragged during this slide, while displaying live
+pixel coordinates.
+
 
 Keyboard Events
 ===============
 
 .. raw:: html
     :file: includes/key_events.html
+
+.. class:: handout
+
+An in-line version of the key_events demo will be shown during this slide,
+showing capture of onkeypress, onkeydown, onkeyup events.  Also shows
+the consistent naming of keys.
 
 
 Signal Anything
