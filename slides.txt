@@ -110,7 +110,7 @@ Unreliable Operators
 ====================
 
 * Most JavaScript comparisons based on toString
-* Ambiguous, unreliable
+* .. but [1] == [1] is false!
 * compare(a, b) provides consistent results
 * Extensible
 
