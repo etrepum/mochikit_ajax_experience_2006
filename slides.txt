@@ -7,11 +7,16 @@
  Intro to MochiKit
 ===================
 
+.. raw:: LaTeX
+    :file: includes/logo.tex
+
 :Author: Bob Ippolito
 :Date: May 2006
+:Venue: The Ajax Experience 2006
 
-.. contents::
-    :class: handout
+.. raw:: LaTeX
+
+    \newpage
 
 
 What's MochiKit?

@@ -332,6 +332,8 @@ ul.auto-toc {
 <td>Bob Ippolito</td></tr>
 <tr><th class="docinfo-name">Date:</th>
 <td>May 2006</td></tr>
+<tr class="field"><th class="docinfo-name">Venue:</th><td class="field-body">The Ajax Experience 2006</td>
+</tr>
 </tbody>
 </table>
 <!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
@@ -354,91 +356,6 @@ ul.auto-toc {
             DIV({id: "mochikit_logo", 'class': 'draggable'}));
     });
 </script>
-<div class="contents handout topic">
-<p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
-<ul class="simple">
-<li><a class="reference" href="#what-s-mochikit" id="id1" name="id1">What's MochiKit?</a></li>
-<li><a class="reference" href="#another-library" id="id2" name="id2">Another Library?!</a></li>
-<li><a class="reference" href="#mochikit-design-goals" id="id3" name="id3">MochiKit Design Goals</a></li>
-<li><a class="reference" href="#why-mochikit" id="id4" name="id4">Why MochiKit?</a></li>
-<li><a class="reference" href="#why-not-mochikit" id="id5" name="id5">Why Not MochiKit?</a></li>
-<li><a class="reference" href="#mochikit-base" id="id6" name="id6">MochiKit.Base</a></li>
-<li><a class="reference" href="#tostring-ambiguity" id="id7" name="id7">toString Ambiguity</a></li>
-<li><a class="reference" href="#repr-tostring" id="id8" name="id8">repr &gt; toString</a></li>
-<li><a class="reference" href="#mochikit-interpreter" id="id9" name="id9">MochiKit Interpreter</a></li>
-<li><a class="reference" href="#unreliable-operators" id="id10" name="id10">Unreliable Operators</a></li>
-<li><a class="reference" href="#json-serialization" id="id11" name="id11">JSON Serialization</a></li>
-<li><a class="reference" href="#adapters" id="id12" name="id12">Adapters?</a></li>
-<li><a class="reference" href="#adapting" id="id13" name="id13">Adapting</a></li>
-<li><a class="reference" href="#dom-comparator-example" id="id14" name="id14">DOM Comparator Example</a></li>
-<li><a class="reference" href="#querystring" id="id15" name="id15">queryString</a></li>
-<li><a class="reference" href="#querystring-and-dom" id="id16" name="id16">queryString and DOM</a></li>
-<li><a class="reference" href="#mangling-objects" id="id17" name="id17">Mangling Objects</a></li>
-<li><a class="reference" href="#object-introspection" id="id18" name="id18">Object Introspection</a></li>
-<li><a class="reference" href="#function-functions" id="id19" name="id19">Function Functions</a></li>
-<li><a class="reference" href="#array-functions" id="id20" name="id20">Array Functions</a></li>
-<li><a class="reference" href="#array-searching" id="id21" name="id21">Array Searching</a></li>
-<li><a class="reference" href="#higher-order-array" id="id22" name="id22">Higher-order Array</a></li>
-<li><a class="reference" href="#mochikit-iter" id="id23" name="id23">MochiKit.Iter</a></li>
-<li><a class="reference" href="#collapsing-iterators" id="id24" name="id24">Collapsing Iterators</a></li>
-<li><a class="reference" href="#iterating-iterables" id="id25" name="id25">Iterating Iterables</a></li>
-<li><a class="reference" href="#sane-iterable-iteration" id="id26" name="id26">Sane Iterable Iteration</a></li>
-<li><a class="reference" href="#infinite-iterators" id="id27" name="id27">Infinite Iterators</a></li>
-<li><a class="reference" href="#mochikit-datetime" id="id28" name="id28">MochiKit.DateTime</a></li>
-<li><a class="reference" href="#iso-dates" id="id29" name="id29">ISO Dates</a></li>
-<li><a class="reference" href="#american-dates" id="id30" name="id30">American Dates</a></li>
-<li><a class="reference" href="#time-and-timestamps" id="id31" name="id31">Time and Timestamps</a></li>
-<li><a class="reference" href="#mochikit-format" id="id32" name="id32">MochiKit.Format</a></li>
-<li><a class="reference" href="#whitespace-assassins" id="id33" name="id33">Whitespace Assassins</a></li>
-<li><a class="reference" href="#number-formatting" id="id34" name="id34">Number Formatting</a></li>
-<li><a class="reference" href="#currency-formatter-example" id="id35" name="id35">Currency Formatter Example</a></li>
-<li><a class="reference" href="#percent-formatter-example" id="id36" name="id36">Percent Formatter Example</a></li>
-<li><a class="reference" href="#mochikit-logging" id="id37" name="id37">MochiKit.Logging</a></li>
-<li><a class="reference" href="#simple-logging" id="id38" name="id38">Simple Logging</a></li>
-<li><a class="reference" href="#logs-are-where" id="id39" name="id39">Logs Are Where?</a></li>
-<li><a class="reference" href="#bookmarklet-debugging" id="id40" name="id40">Bookmarklet Debugging</a></li>
-<li><a class="reference" href="#mochikit-loggingpane" id="id41" name="id41">MochiKit.LoggingPane</a></li>
-<li><a class="reference" href="#manually-creating-a-loggingpane" id="id42" name="id42">Manually creating a LoggingPane</a></li>
-<li><a class="reference" href="#inline-loggingpane-example" id="id43" name="id43">Inline LoggingPane Example</a></li>
-<li><a class="reference" href="#mochikit-dom" id="id44" name="id44">MochiKit.DOM</a></li>
-<li><a class="reference" href="#createdom" id="id45" name="id45">createDOM</a></li>
-<li><a class="reference" href="#createdom-example" id="id46" name="id46">createDOM Example</a></li>
-<li><a class="reference" href="#less-ugly" id="id47" name="id47">Less Ugly</a></li>
-<li><a class="reference" href="#flattening-for-the-dom" id="id48" name="id48">Flattening for the DOM</a></li>
-<li><a class="reference" href="#attributes" id="id49" name="id49">Attributes</a></li>
-<li><a class="reference" href="#alternating" id="id50" name="id50">Alternating</a></li>
-<li><a class="reference" href="#interpreter-dom" id="id51" name="id51">Interpreter DOM</a></li>
-<li><a class="reference" href="#scraping-text" id="id52" name="id52">Scraping Text</a></li>
-<li><a class="reference" href="#forms" id="id53" name="id53">Forms</a></li>
-<li><a class="reference" href="#manipulating-dom" id="id54" name="id54">Manipulating DOM</a></li>
-<li><a class="reference" href="#dom-attributes" id="id55" name="id55">DOM Attributes</a></li>
-<li><a class="reference" href="#dom-gotchas" id="id56" name="id56">DOM Gotchas</a></li>
-<li><a class="reference" href="#mochikit-color" id="id57" name="id57">MochiKit.Color</a></li>
-<li><a class="reference" href="#components-to-color" id="id58" name="id58">Components to Color</a></li>
-<li><a class="reference" href="#string-to-color" id="id59" name="id59">String to Color</a></li>
-<li><a class="reference" href="#dom-to-color" id="id60" name="id60">DOM to Color</a></li>
-<li><a class="reference" href="#nscolor-colors" id="id61" name="id61">NSColor colors</a></li>
-<li><a class="reference" href="#mixing-colors" id="id62" name="id62">Mixing colors</a></li>
-<li><a class="reference" href="#color-components" id="id63" name="id63">Color Components</a></li>
-<li><a class="reference" href="#mochikit-async" id="id64" name="id64">MochiKit.Async</a></li>
-<li><a class="reference" href="#wtf-is-a-deferred" id="id65" name="id65">WTF is a Deferred?</a></li>
-<li><a class="reference" href="#trivial-deferreds" id="id66" name="id66">Trivial Deferreds</a></li>
-<li><a class="reference" href="#timed-events" id="id67" name="id67">Timed Events</a></li>
-<li><a class="reference" href="#network-events" id="id68" name="id68">Network Events</a></li>
-<li><a class="reference" href="#deferred-usage" id="id69" name="id69">Deferred Usage</a></li>
-<li><a class="reference" href="#result-chaining" id="id70" name="id70">Result Chaining</a></li>
-<li><a class="reference" href="#deferred-chaining" id="id71" name="id71">Deferred Chaining</a></li>
-<li><a class="reference" href="#mochikit-signal" id="id72" name="id72">MochiKit.Signal</a></li>
-<li><a class="reference" href="#browser-events-suck" id="id73" name="id73">Browser Events Suck</a></li>
-<li><a class="reference" href="#connect-to-the-dom" id="id74" name="id74">connect to the DOM</a></li>
-<li><a class="reference" href="#custom-event-object" id="id75" name="id75">Custom Event Object</a></li>
-<li><a class="reference" href="#mouse-events" id="id76" name="id76">Mouse Events</a></li>
-<li><a class="reference" href="#keyboard-events" id="id77" name="id77">Keyboard Events</a></li>
-<li><a class="reference" href="#signal-anything" id="id78" name="id78">Signal Anything</a></li>
-<li><a class="reference" href="#mochikit-support" id="id79" name="id79">MochiKit Support</a></li>
-<li><a class="reference" href="#mochikit-on-the-web" id="id80" name="id80">MochiKit on the Web</a></li>
-</ul>
-</div>
 
 </div>
 <div class="slide" id="what-s-mochikit">
