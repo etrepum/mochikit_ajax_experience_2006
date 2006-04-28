@@ -23,13 +23,16 @@ What's MochiKit?
 * Plays nicely with other code
 
 
-Another library?!
+Another Library?!
 =================
 
-* Prototype was undocumented, no tests, didn't play nice
-* Dojo had no documentation or demos
-* Everything else was outdated, not liberally licensed,
-  not cross-platform
+(July 2005)
+
+Prototype:
+    no docs or tests, mangles built-ins
+
+Dojo:
+    no docs or demos
 
 
 MochiKit Design Goals
@@ -37,31 +40,29 @@ MochiKit Design Goals
 
 * Documentation
 * DOCUMENTATION
-* Test early test often
+* Lots of tests
 * Stay out of the way (not a framework)
-* Consistent
-* Portable
-* Workaround browser stupidity
+* Consistent and portable
 
 
 Why MochiKit?
 =============
 
-* Extremely well documented, tested, stable
-* Safari 2.0, Firefox 1.0, IE 6, Opera 8.5 (and others)
-* Abstracts async behavior
-* MochiKit.DOM syntax makes DOM painless
-* MochiKit.Signal works around LOTS of browser misfeatures
+* Good docs, well tested
+* Async abstractions
+* Painless DOM syntax
+* Consistent browser events
 * Python-like (think "standard library")
+* Safari 2.0, Firefox 1.0, IE 6, Opera 8.5 (and others)
 
 
-Why not MochiKit?
+Why Not MochiKit?
 =================
 
 * No support for IE 5.5
 * No widgets
 * No animation, transitions, etc.
-* ... but we're working on a Scriptaculous port (MochiKit 1.4)
+* ... MochiKit 1.4
 
 
 MochiKit.Base
@@ -72,31 +73,19 @@ MochiKit.Base
 * This is the "suck less" part
 
 
-toString ambiguity
+toString Ambiguity
 ==================
 
-* Which one of these things is not like the other:
-
-    - [1]
-    - 1.0
-    - "1"
-
-* They're all the same according to JavaScript's toString!  Totally useless
-  for debugging.
+* [1].toString() === "1"
+* (1).toString() === "1"
+* "1".toString() === "1"
 
 
 repr > toString
 ===============
 
 * MochiKit provides repr() instead, just like Python.
-  Think "programmer representation".
-
-    - repr([1]) == "[1]"
-    - repr(1.0) == "1"
-    - repr("1") == "\"1\""
-
-* repr understands primitive types, objects that implement ``repr`` or 
-  ``__repr__``
+* Unambiguous, extensible
 
 
 MochiKit Interpreter
@@ -106,61 +95,44 @@ MochiKit Interpreter
     :file: includes/interpreter.html
 
 
-compare instead of operators
-============================
+Unreliable Operators
+====================
 
-* JavaScript comparisons are WHACK (these are ``true``!)
-
-
-  - [1,"2"] == "1,2"
-  - ([""] == "") && ([] == "") && ([] != [""])
-
-
-
+* Most JavaScript comparisons based on toString
+* Ambiguous, unreliable
 * compare(a, b) provides consistent results
+* Extensible
 
 
-  - Usable with Array.prototype.sort
-  - Understands String, Date, Array, Number, String, ...
-  - Can be extended with adapter registry
-
-
-JSON serialization
+JSON Serialization
 ==================
 
 * serializeJSON(object) -> JSON string
-
-  - Understands primitive types
-  - Will call ``json`` or ``__json__`` on objects if method exists
-  - Can be extended with adapter registry
+* Extensible
 
 
-Wait.. Adapters?
-================
+Adapters?
+=========
 
 * Not a good idea to hack on built-in objects
 * MochiKit doesn't always know what you want to do
 * Adapters let you extend existing functions
 
-  - registerRepr
-  - registerComparator
-  - registerJSON
 
-
-Registering an adapter
-======================
+Adapting
+========
 
 name:
-    a unique identifier for your adapter (can be used to unregister)
+    unique identifier for your adapter
 
 check:
-    a predicate, should wrap be called?
+    predicate, should wrap be called?
 
 wrap:
     performs the operation
 
 
-DOM comparator example
+DOM Comparator Example
 ======================
 
 Register HTML-based comparator for DOM nodes::
@@ -180,8 +152,14 @@ Register HTML-based comparator for DOM nodes::
 queryString
 ===========
 
+* Easily build URL query strings
 * queryString(["foo", "bar"], [1, 2]) == "foo=1&bar=2"
 * queryString({foo: 1, bar: 2}) == "foo=1&bar=2"
+
+
+queryString and DOM
+===================
+
 * queryString("formNode") == "foo=1&bar=2", given::
 
     <form id="formNode">
@@ -194,46 +172,45 @@ Mangling Objects
 ================
 
 merge(obj[, ...]):
-    Create a new object consisting of every property in the given objects
-    (last object given takes precedence)
+    New object, every prop:value of given objects
 
 update(obj[, ...]):
-    In-place version of merge
+    In-place merge
 
 updatetree(obj[, ...]):
-    Recursive version of update
+    Recursive update
 
 setdefault(obj[, ...]):
-    Like update, but does NOT overwrite existing properties
+    update, but no overwrite
 
 
 Object Introspection
 ====================
 
 keys(obj):
-    returns an Array of every property on obj
+    Array of every property on obj
 
 items(obj):
-    returns an Array of every [property, value] on obj
+    Array of every [property, value] on obj
 
 
-Function functions
+Function Functions
 ==================
 
 bind(fn, self[, arg...]):
-    new function, equivalent to fn.apply(self, concat(arg..., arguments))
+    fn.apply(self, concat(arg..., arguments))
 
 method(self, fn[, arg...]):
     convenience form for bind
 
 itemgetter(name):
-    new function(obj), equivalent to obj[name]
+    obj[name]
 
 
-Basic Array functions
-=====================
+Array Functions
+===============
 
-Array.prototype is missing lots of useful functions (cross-platform anyway)
+Array missing lots of useful functionality
 
 concat(lst[, ...]):
     concatenates Arrays
@@ -242,18 +219,17 @@ extend(self, seq, skip=0):
     extends a list in-place
 
 flattenArguments(args[, ...]):
-    Creates a flat Array from a bunch of arguments, recursively flattening
-    any Arrays that are encountered
+    recursively flatten arguments to single Array
 
 
-compare-based Array functions
-=============================
+Array Searching
+===============
 
 findValue(lst, value, start=0, end=lst.length):
     finds index of value (using compare)
 
 findIdentical(lst, value, start=0, end=lst.length):
-    finds index of value (using === for identity)
+    finds index of value (using ===)
 
 listMin(lst):
     finds least item in lst (using compare)
@@ -262,8 +238,8 @@ listMax(lst):
     finds greatest item in lst (using compare)
 
 
-Higher-order Array functions
-============================
+Higher-order Array
+==================
 
 filter(predicate, lst):
     new Array where predicate(lst[n]) is true
@@ -278,30 +254,29 @@ keyComparator(key, ...):
 MochiKit.Iter
 =============
 
-MochiKit.Iter provides generalized iteration, very similar to Python's
+MochiKit.Iter provides generalized iteration, like Python's
 iteration protocol and itertools module.
 
 * Works great on Arrays, but also on anything iterable.
 * Anything with a ``next`` method is iterable, and the iteration stops when
   StopIteration is thrown.
-* Objects can define an ``iter`` method to return an iterable
-* Can register adapters too, with registerIterable.
+* Extensible
 
 
 Collapsing Iterators
 ====================
 
 exhaust(iterable):
-    Iterate over ``iterable`` and throw away the results
+    Iterate and ignore results
 
 list(iterable):
-    Convert ``iterable`` to a new Array
+    new Array
 
 sorted(iterable, cmp=compare):
-    Return a sorted Array from ``iterable`` using ``cmp`` as the comparator
+    sorted Array using cmp
 
 sum(iterable, start=0):
-    Return the sum of each item in ``iterable`` plus the ``start``.
+    Return start plus sum of items
 
 
 Iterating Iterables
@@ -334,26 +309,13 @@ Infinite Iterators
 ==================
 
 count(n=0):
-    Iterates over a sequence of numbers (n, n + 1, n + 2, ...)
+    n, n + 1, n + 2, ...
 
 cycle(iterable):
-    Iterates over iterable and saves the results. Once iterable is exhausted,
-    it iterates over the cached result Array indefinitely.
+    while (true) { iterable[0], ..., iterable[N] }
 
 repeat(item):
-    Returns an iterator that returns item over and over, same as
-    cycle([item])
-
-
-Should I care about Iter?
-=========================
-
-* You don't need to understand it to understand MochiKit
-* Used primarily to simplify internal code, helps a lot with DOM generation
-* You might not need it, but it is convenient for people used to a more
-  functional paradigm
-* If you don't use itertools in Python, you probably won't directly use
-  much of MochiKit.Iter either
+    item, item, item, item, ...
 
 
 MochiKit.DateTime
@@ -362,58 +324,56 @@ MochiKit.DateTime
 * JavaScript Date objects aren't very convenient
 * W3C profile ISO 8601 style timestamps are Good
 
+
 ISO Dates
 =========
 
 isoDate(str):
-    Convert ISO 8601 date to a Date object
+    Date object from ISO 8601 date string
 
 toISODate(date):
-    Convert a Date object to an ISO 8601 date
+    Date object to ISO 8601 date string
 
 
-Silly American Dates
-====================
+American Dates
+==============
 
 americanDate(str):
-    Convert an MM/DD/YYYY date to a Date object
+    MM/DD/YYYY to a Date object
 
 toAmericanDate(date):
-    Convert a Date object to a M/D/YYYY date (1/1/2001)
+    Date object to M/D/YYYY
 
 toPaddedAmericanDate(date):
-    Convert a Date object to a MM/DM/YYYY date (01/01/2001)
+    Date object to MM/DM/YYYY
 
 
 Time and Timestamps
 ===================
 
 isoTimestamp(str):
-    Convert a YYYY-MM-DD hh:mm:ss or YYYY-MM-DDThh:mm:ssZ timestamp to a
-    Date object
+    YYYY-MM-DDThh:mm:ssZ to Date object
 
 toISOTime(date):
-    Convert a Date object to a hh:mm:ss string
+    Date object to hh:mm:ss
 
 toISOTimestamp(date, realISO=false):
-    Convert a Date object to a YYYY-MM-DD hh:mm:ss string. If realISO is true,
-    then use the proper YYYY-MM-DDThh:mm:ssZ form.
+    Date object to a YYYY-MM-DD hh:mm:ss (or YYYY-MM-DDThh:mm:ssZ)
 
 
 MochiKit.Format
 ===============
 
-* JavaScript doesn't really do string formatting
-* Users like to see big numbers with thousands separators
-* Number formatting based on Java's Number Format Pattern Syntax
+* JavaScript has no sprintf
+* Thousands separators help readability
+* Based on Java's Number Format Pattern Syntax
 
 
-Simple String Mangling
-======================
+Whitespace Assassins
+====================
 
 strip(str, chars="\\s"):
-    Return a string based on str with leading and trailing whitespace stripped.
-    If the chars regex is specified, it will be used instead of the default.
+    strip leading and trailing whitespace
 
 lstrip(str, chars="\\s"):
     strip only leading whitespace
@@ -425,20 +385,24 @@ rstrip(str, chars="\\s"):
 Number Formatting
 =================
 
-numberFormatter(pattern, placeholder="", locale="default"):
-    Return a function that formats numbers using the given pattern
+numberFormatter(pattern):
+    new function that formats numbers to pattern
 
-Number Formatter Examples
-=========================
+
+Currency Formatter Example
+==========================
     
 Currency::
 
     >>> dollarFormat = numberFormatter("$###,###.##")
     >>> dollarFormat(1234567.89)
     "$1,234,567.89"
-    
 
-Percents::
+
+Percent Formatter Example
+=========================
+
+Percent::
 
     >>> percentFormat = numberFormatter("###,###%")
     >>> percentFormat(123.45)
@@ -450,48 +414,44 @@ MochiKit.Logging
 
 * alert() sucks
 * Debugging is hard enough
-* Not every browser has FireBug
-* I've had no luck with Venkman
-* Less luck with Microsoft's Script Debugger
+* FireBug not portable
+* Venkman hard to use
+* Microsoft Script Debugger....
 
 
-Simple logging
+Simple Logging
 ==============
 
 log(msg):
     Logs a message at the INFO level
 
-logDebug(msg):
-    Logs a message at the DEBUG level
-
-logWarning, logError, logFatal...
+logDebug, logWarning, logError, logFatal...
 
 
-Where'd my log messages go?
-===========================
+Logs Are Where?
+===============
 
-* In Safari, Firefox with FireBug, and Opera they will be logged to the
-  appropriate console (but you can turn this off).
-* Will also go to any logging listener
-* Logging listeners are just functions that take log message objects
+Native console:
+    Safari, FireBug, Opera
+
+Logging listener(s):
+    functions called with log message objects
 
 
 Bookmarklet Debugging
 =====================
 
-Just bookmark this::
+Pop-up MochiKit.LoggingPane::
 
     javascript:MochiKit.Logging.logger.debuggingBookmarklet()
 
-Currently, this is a pop-up MochiKit.LoggingPane.
 
 
 MochiKit.LoggingPane
 ====================
 
-* A usable MochiKit.Logging listener
+* MochiKit.Logging listener
 * Can be used in-line or as a pop-up window
-* Could be fancier, but it gets the job done
 
 
 Manually creating a LoggingPane
@@ -516,21 +476,21 @@ Inline LoggingPane Example
 MochiKit.DOM
 ============
 
-* DOM is painful, but it doesn't have to be
-* Functions for finding, creating, modifying DOM nodes
-* Most functions will take either a string or a DOM node reference, saving
-  you the trouble of getElementById(s), $(s) or similar.
+* W3C bindings are painful
+* Easily find, create, mangle DOM nodes
+* Don't need $(s), automatic
+* Works on responseXML too!
 
 
 createDOM
 =========
 
-* Does a good job of turning any object into a DOM node
-* Strings and numbers to text, flattens Arrays or iterators of anything
-* Extensible with an adapter registry
+* Any object into a DOM node
+* Strings to text, flattens iterators
+* Extensible
 
 
-createDOM example
+createDOM Example
 =================
 
 createDOM(tagName, attributes, contents...)
@@ -541,35 +501,32 @@ A simple list::
         createDOM("li", null, "first"),
         createDOM("li", null, "second"));
 
-Equivalent to::
+Renders as::
 
     <ul><li>first</li><li>second</li></ul>
 
 
-But that's still ugly...
-========================
+Less Ugly
+=========
 
-We use aliases instead, for all of the common tags::
+Use aliases instead, supports common tags::
 
     var node = UL(null,
         LI("first"),
         LI("second"));
 
-Note that MochiKit 1.3 and later allows a text node as the first
-parameter for convenience (saves a lot of "null" typing)
 
+Flattening for the DOM
+======================
 
-Flattening lists
-================
-
-Functional programming comes in handy for DOM creation::
+Functional style handy for DOM creation::
 
     var items = ["first", "second"];
     var node = UL(null, map(LI, items));
 
 
-What about attributes?
-======================
+Attributes
+==========
 
 First parameter is either an object (attributes), or a string (text node)::
 
@@ -581,10 +538,10 @@ First parameter is either an object (attributes), or a string (text node)::
         map(LI, classes, items));
 
 
-Alternating classes
-===================
+Alternating
+===========
 
-More MochiKit.Iter goodies, good for table rows::
+MochiKit.Iter good for table rows::
 
     var classes = cycle(
         {"class": "even"},
@@ -603,7 +560,7 @@ MochiKit Interpreter (Again)
     :file: includes/dominterpreter.html
 
 
-Scraping text
+Scraping Text
 =============
 
 Scraping text is useful for progressive enhancement...
@@ -618,8 +575,8 @@ JavaScript::
     "text is here"
 
 
-Reading forms
-=============
+Forms
+=====
 
 HTML::
 
@@ -634,27 +591,27 @@ JavaScript::
     [["foo", "bar"], ["1", "2"]]
 
 
-Manipulating DOM nodes
-======================
+Manipulating DOM
+================
 
 appendChildNodes(parentNode, childNode...):
-    Add nodes to parentNode using the DOM coercion rules from createDOM
+    Add nodes via createDOM
 
 replaceChildNodes(parentNode, childNode...):
-    Remove all children from parentNode, then appendChildNodes
+    Remove all, then append
 
 swapDOM(dest, src):
-    Replace dest with src (if src is null, then dest is removed)
+    Replace dest with src (or remove)
 
 
-Manipulating DOM attributes
-===========================
+DOM Attributes
+==============
 
 setNodeAttribute(node, attr, value):
-    Set the node attribute attr=value 
+    node attribute attr=value 
 
 updateNodeAttributes(node, attrs):
-    Set the node attributes based on the object attrs
+    Set the node attributes from object attrs
     
 
 DOM Gotchas
@@ -673,124 +630,110 @@ MochiKit.Color
 * Normalized, all components from [0.0, 1.0]
 
 
-Creating colors from components
-===============================
+Components to Color
+===================
 
 * Color.fromRGB(r, g, b, alpha=1.0)
-* Color.fromHSL(h, s, l, alpha=1.0)
-* Color.fromHSV(h, s, v, alpha=1.0)
-
-Will also take objects, e.g. {r: 1, g: 0, b: 0, a: 1}
+* fromHSL, fromHSV
+* Will also take objects, e.g. {r: 1, g: 0, b: 0, a: 1}
 
 
-Creating colors from strings
-============================
+String to Color
+===============
 
 Color.fromString(str):
-    Generally "does what you mean" with any valid CSS color description.
-    "rgb(...)", "hsl(...)", "#RRGGBB", "blue"
+    Any valid CSS color description.  "rgb(...)", "hsl(...)", "#RRGGBB", "blue"
 
 Implementations in fromRGBString, fromHSLString, fromHexString, fromName.
 
 
-Creating colors from DOM elements
-=================================
+DOM to Color
+============
 
 - Color.fromBackground(node)
 - Color.fromComputedStyle(node, style, css)
 - Color.fromText(node)
 
 
-Built-in NSColor colors
-=======================
+NSColor colors
+==============
 
-NSColor-based constructors for basic colors
+Cocoa-based constructors for basic colors
 
 - Color.whiteColor()
-- Color.blueColor()
-- Color.transparentColor()
-- ...
+- blueColor, transparentColor, ...
 
 
 Mixing colors
 =============
 
 - color.blendedColor(otherColor, fraction)
-- color.colorWithHue(hue)
-- color.colorWithLevel(level)
-- color.colorWithSaturation(saturation)
-- color.colorWithAlpha(alpha)
+- color.colorWithHue, colorWithLevel, ...
 
 
-Getting color values
-====================
+Color Components
+================
 
 Objects:
 
-- color.asRGB()
-- color.asHSL()
-- color.asHSV()
+- color.asRGB(), asHSL, asHSV
 
 Strings:
 
-- color.toHexString()
-- color.toRGBString()
-- color.toHSLString()
+- color.toHexString(), toRGBString, toHSLString
 
 
 MochiKit.Async
 ==============
 
-* Yes, there is AJAX
-* Generalized asynchronous model based on Twisted
-* Handles XMLHttpRequest and timed events (setTimeout)
+* AJAX!
+* Model based on Twisted
+* XMLHttpRequest and timed events (setTimeout)
 
 
 WTF is a Deferred?
 ==================
 
-* A "promise" to call back exactly once with a single result (or error)
-  at some time (could be immediately!)
+* A "promise" for a result
 * Can be chained
-* Model works in any asynchronous platform with nearly any language
-* Not "ideal" API, but without threads or anything resembling coroutines
-  it's the best you can do.
+* Model on any asynchronous platform
+* Not "ideal" API, but no coroutines or threads
 
 
 Trivial Deferreds
 =================
 
 succeed(value):
-    A successful deferred that will callback with value
+    successful Deferred from value
 
 fail(error):
-    A failed deferred that will errback with value
+    failed Deferred from error
 
 maybeDeferred(func, arguments..):
-    Call a function and make sure it returns a Deferred. Non-deferred return
-    values get wrapped with succeed, and errors get wrapped with fail.
+    Deferred from func(args..) call
     
 
 Timed Events
 ============
 
 wait(seconds, value):
-    Return a Deferred that calls back with value after seconds have passed
+    Deferred that waits
 
 callLater(seconds, func, arguments...):
-    Return a Deferred that will call func(arguments) after seconds have passed
+    Deferred that waits, then calls
 
 
 Network Events
 ==============
 
 doSimpleXMLHttpRequest(url[, queryArguments]):
-    Set up a GET XMLHttpRequest to url and return a Deferred. The Deferred
-    will callback with the XMLHttpRequest instance.
+    Deferred from XMLHttpRequest GET
 
 loadJSONDoc(url[, queryArguments]):
-    Set up a simple XMLHttpRequest, process its responseText as JSON, and
-    callback with the JSON object.
+    Deferred from XMLHttpRequest GET then eval
+
+sendXMLHttpRequest(req, content):
+    Deferred from async XMLHttpRequest
 
 
 Deferred Usage
@@ -805,17 +748,17 @@ Fetch a JSON document::
     d.addCallback(gotDocument);
     d.addErrback(logError);
 
+
 Result Chaining
 ===============
 
-The implementation of loadJSONDoc looks like this::
+loadJSONDoc implementation::
 
     var d = doSimpleXMLHttpRequest(url);
     d.addCallback(evalJSONDoc);
     return d;
 
-Further callbacks get the result of evalJSONDoc, not the original
-doSimpleXMLHttpRequest result.
+Uses Deferred's chained results
 
 
 Deferred Chaining
@@ -823,40 +766,35 @@ Deferred Chaining
 
 Returning a Deferred from a callback will "pause" the callback chain::
     
-    function gotDocument(json) {
-        // ...
-    }
-    function delay(res) {
-        return wait(2.0, res);
-    }
+    function gotDocument(json) { /* ... */ }
+    function delay(res) { return wait(2.0, res); }
     var d = loadJSONDoc("example.json");
     d.addCallback(delay);
     d.addCallback(gotDocument);
-    d.addErrback(logError);
         
 
 MochiKit.Signal
 ===============
 
 * Crown jewel of MochiKit 1.3
-* Sorry it took so long
+* Sorry it took so long!
 * Browsers totally suck at events
 
 
-What sucks about browser events?
-================================
+Browser Events Suck
+===================
 
 * IE is totally different
 * IE's garbage "collector"
 * Safari needs help
 * They all disagree on pixel positions
-* Damn near impossible to get key events to work properly cross-platform
+* Key events seriously borked
 
 
 connect to the DOM
 ==================
 
-This works everywhere::
+Works everywhere::
 
     function myClick(e) {
         var mouse = e.mouse();
@@ -869,13 +807,13 @@ This works everywhere::
 Custom Event Object
 ===================
 
-* MochiKit.Signal gives you a consistent event object, NOT the browser's.
-* e.type() is the event type (doesn't include the "on" prefix)
+* Consistent event object, NOT the browser's.
+* e.type() is the event type (no "on" prefix)
 * e.target() is the event target
-* e.mouse() has consistent client and page coordinates
-* e.key() has consistent keyboard state
-* ... and consistent key codes and key names!!@#!
-* e.stop() does both W3C stopPropagation and preventDefault for convenience
+* e.mouse() has mouse coordinates
+* e.key() for keyboard state
+* e.modifiers() for keyboard modifiers
+* e.stop() stopPropagation and preventDefault
 
 
 Mouse Events
@@ -895,7 +833,7 @@ Keyboard Events
 Signal Anything
 ===============
 
-* You can use MochiKit.Signal to broadcast your own events
+* Broadcast your own events!
 * connect() and disconnect() are the same
 * signal(src, signal, args...) to fire the event
 

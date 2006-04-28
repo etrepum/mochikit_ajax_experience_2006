@@ -358,84 +358,85 @@ ul.auto-toc {
 <p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
 <ul class="simple">
 <li><a class="reference" href="#what-s-mochikit" id="id1" name="id1">What's MochiKit?</a></li>
-<li><a class="reference" href="#another-library" id="id2" name="id2">Another library?!</a></li>
+<li><a class="reference" href="#another-library" id="id2" name="id2">Another Library?!</a></li>
 <li><a class="reference" href="#mochikit-design-goals" id="id3" name="id3">MochiKit Design Goals</a></li>
 <li><a class="reference" href="#why-mochikit" id="id4" name="id4">Why MochiKit?</a></li>
-<li><a class="reference" href="#why-not-mochikit" id="id5" name="id5">Why not MochiKit?</a></li>
+<li><a class="reference" href="#why-not-mochikit" id="id5" name="id5">Why Not MochiKit?</a></li>
 <li><a class="reference" href="#mochikit-base" id="id6" name="id6">MochiKit.Base</a></li>
-<li><a class="reference" href="#tostring-ambiguity" id="id7" name="id7">toString ambiguity</a></li>
+<li><a class="reference" href="#tostring-ambiguity" id="id7" name="id7">toString Ambiguity</a></li>
 <li><a class="reference" href="#repr-tostring" id="id8" name="id8">repr &gt; toString</a></li>
 <li><a class="reference" href="#mochikit-interpreter" id="id9" name="id9">MochiKit Interpreter</a></li>
-<li><a class="reference" href="#compare-instead-of-operators" id="id10" name="id10">compare instead of operators</a></li>
-<li><a class="reference" href="#json-serialization" id="id11" name="id11">JSON serialization</a></li>
-<li><a class="reference" href="#wait-adapters" id="id12" name="id12">Wait.. Adapters?</a></li>
-<li><a class="reference" href="#registering-an-adapter" id="id13" name="id13">Registering an adapter</a></li>
-<li><a class="reference" href="#dom-comparator-example" id="id14" name="id14">DOM comparator example</a></li>
+<li><a class="reference" href="#unreliable-operators" id="id10" name="id10">Unreliable Operators</a></li>
+<li><a class="reference" href="#json-serialization" id="id11" name="id11">JSON Serialization</a></li>
+<li><a class="reference" href="#adapters" id="id12" name="id12">Adapters?</a></li>
+<li><a class="reference" href="#adapting" id="id13" name="id13">Adapting</a></li>
+<li><a class="reference" href="#dom-comparator-example" id="id14" name="id14">DOM Comparator Example</a></li>
 <li><a class="reference" href="#querystring" id="id15" name="id15">queryString</a></li>
-<li><a class="reference" href="#mangling-objects" id="id16" name="id16">Mangling Objects</a></li>
-<li><a class="reference" href="#object-introspection" id="id17" name="id17">Object Introspection</a></li>
-<li><a class="reference" href="#function-functions" id="id18" name="id18">Function functions</a></li>
-<li><a class="reference" href="#basic-array-functions" id="id19" name="id19">Basic Array functions</a></li>
-<li><a class="reference" href="#compare-based-array-functions" id="id20" name="id20">compare-based Array functions</a></li>
-<li><a class="reference" href="#higher-order-array-functions" id="id21" name="id21">Higher-order Array functions</a></li>
-<li><a class="reference" href="#mochikit-iter" id="id22" name="id22">MochiKit.Iter</a></li>
-<li><a class="reference" href="#collapsing-iterators" id="id23" name="id23">Collapsing Iterators</a></li>
-<li><a class="reference" href="#iterating-iterables" id="id24" name="id24">Iterating Iterables</a></li>
-<li><a class="reference" href="#sane-iterable-iteration" id="id25" name="id25">Sane Iterable Iteration</a></li>
-<li><a class="reference" href="#infinite-iterators" id="id26" name="id26">Infinite Iterators</a></li>
-<li><a class="reference" href="#should-i-care-about-iter" id="id27" name="id27">Should I care about Iter?</a></li>
+<li><a class="reference" href="#querystring-and-dom" id="id16" name="id16">queryString and DOM</a></li>
+<li><a class="reference" href="#mangling-objects" id="id17" name="id17">Mangling Objects</a></li>
+<li><a class="reference" href="#object-introspection" id="id18" name="id18">Object Introspection</a></li>
+<li><a class="reference" href="#function-functions" id="id19" name="id19">Function Functions</a></li>
+<li><a class="reference" href="#array-functions" id="id20" name="id20">Array Functions</a></li>
+<li><a class="reference" href="#array-searching" id="id21" name="id21">Array Searching</a></li>
+<li><a class="reference" href="#higher-order-array" id="id22" name="id22">Higher-order Array</a></li>
+<li><a class="reference" href="#mochikit-iter" id="id23" name="id23">MochiKit.Iter</a></li>
+<li><a class="reference" href="#collapsing-iterators" id="id24" name="id24">Collapsing Iterators</a></li>
+<li><a class="reference" href="#iterating-iterables" id="id25" name="id25">Iterating Iterables</a></li>
+<li><a class="reference" href="#sane-iterable-iteration" id="id26" name="id26">Sane Iterable Iteration</a></li>
+<li><a class="reference" href="#infinite-iterators" id="id27" name="id27">Infinite Iterators</a></li>
 <li><a class="reference" href="#mochikit-datetime" id="id28" name="id28">MochiKit.DateTime</a></li>
 <li><a class="reference" href="#iso-dates" id="id29" name="id29">ISO Dates</a></li>
-<li><a class="reference" href="#silly-american-dates" id="id30" name="id30">Silly American Dates</a></li>
+<li><a class="reference" href="#american-dates" id="id30" name="id30">American Dates</a></li>
 <li><a class="reference" href="#time-and-timestamps" id="id31" name="id31">Time and Timestamps</a></li>
 <li><a class="reference" href="#mochikit-format" id="id32" name="id32">MochiKit.Format</a></li>
-<li><a class="reference" href="#simple-string-mangling" id="id33" name="id33">Simple String Mangling</a></li>
+<li><a class="reference" href="#whitespace-assassins" id="id33" name="id33">Whitespace Assassins</a></li>
 <li><a class="reference" href="#number-formatting" id="id34" name="id34">Number Formatting</a></li>
-<li><a class="reference" href="#number-formatter-examples" id="id35" name="id35">Number Formatter Examples</a></li>
-<li><a class="reference" href="#mochikit-logging" id="id36" name="id36">MochiKit.Logging</a></li>
-<li><a class="reference" href="#simple-logging" id="id37" name="id37">Simple logging</a></li>
-<li><a class="reference" href="#where-d-my-log-messages-go" id="id38" name="id38">Where'd my log messages go?</a></li>
-<li><a class="reference" href="#bookmarklet-debugging" id="id39" name="id39">Bookmarklet Debugging</a></li>
-<li><a class="reference" href="#mochikit-loggingpane" id="id40" name="id40">MochiKit.LoggingPane</a></li>
-<li><a class="reference" href="#manually-creating-a-loggingpane" id="id41" name="id41">Manually creating a LoggingPane</a></li>
-<li><a class="reference" href="#inline-loggingpane-example" id="id42" name="id42">Inline LoggingPane Example</a></li>
-<li><a class="reference" href="#mochikit-dom" id="id43" name="id43">MochiKit.DOM</a></li>
-<li><a class="reference" href="#createdom" id="id44" name="id44">createDOM</a></li>
-<li><a class="reference" href="#createdom-example" id="id45" name="id45">createDOM example</a></li>
-<li><a class="reference" href="#but-that-s-still-ugly" id="id46" name="id46">But that's still ugly...</a></li>
-<li><a class="reference" href="#flattening-lists" id="id47" name="id47">Flattening lists</a></li>
-<li><a class="reference" href="#what-about-attributes" id="id48" name="id48">What about attributes?</a></li>
-<li><a class="reference" href="#alternating-classes" id="id49" name="id49">Alternating classes</a></li>
-<li><a class="reference" href="#mochikit-interpreter-again" id="id50" name="id50">MochiKit Interpreter (Again)</a></li>
-<li><a class="reference" href="#scraping-text" id="id51" name="id51">Scraping text</a></li>
-<li><a class="reference" href="#reading-forms" id="id52" name="id52">Reading forms</a></li>
-<li><a class="reference" href="#manipulating-dom-nodes" id="id53" name="id53">Manipulating DOM nodes</a></li>
-<li><a class="reference" href="#manipulating-dom-attributes" id="id54" name="id54">Manipulating DOM attributes</a></li>
-<li><a class="reference" href="#dom-gotchas" id="id55" name="id55">DOM Gotchas</a></li>
-<li><a class="reference" href="#mochikit-color" id="id56" name="id56">MochiKit.Color</a></li>
-<li><a class="reference" href="#creating-colors-from-components" id="id57" name="id57">Creating colors from components</a></li>
-<li><a class="reference" href="#creating-colors-from-strings" id="id58" name="id58">Creating colors from strings</a></li>
-<li><a class="reference" href="#creating-colors-from-dom-elements" id="id59" name="id59">Creating colors from DOM elements</a></li>
-<li><a class="reference" href="#built-in-nscolor-colors" id="id60" name="id60">Built-in NSColor colors</a></li>
-<li><a class="reference" href="#mixing-colors" id="id61" name="id61">Mixing colors</a></li>
-<li><a class="reference" href="#getting-color-values" id="id62" name="id62">Getting color values</a></li>
-<li><a class="reference" href="#mochikit-async" id="id63" name="id63">MochiKit.Async</a></li>
-<li><a class="reference" href="#wtf-is-a-deferred" id="id64" name="id64">WTF is a Deferred?</a></li>
-<li><a class="reference" href="#trivial-deferreds" id="id65" name="id65">Trivial Deferreds</a></li>
-<li><a class="reference" href="#timed-events" id="id66" name="id66">Timed Events</a></li>
-<li><a class="reference" href="#network-events" id="id67" name="id67">Network Events</a></li>
-<li><a class="reference" href="#deferred-usage" id="id68" name="id68">Deferred Usage</a></li>
-<li><a class="reference" href="#result-chaining" id="id69" name="id69">Result Chaining</a></li>
-<li><a class="reference" href="#deferred-chaining" id="id70" name="id70">Deferred Chaining</a></li>
-<li><a class="reference" href="#mochikit-signal" id="id71" name="id71">MochiKit.Signal</a></li>
-<li><a class="reference" href="#what-sucks-about-browser-events" id="id72" name="id72">What sucks about browser events?</a></li>
-<li><a class="reference" href="#connect-to-the-dom" id="id73" name="id73">connect to the DOM</a></li>
-<li><a class="reference" href="#custom-event-object" id="id74" name="id74">Custom Event Object</a></li>
-<li><a class="reference" href="#mouse-events" id="id75" name="id75">Mouse Events</a></li>
-<li><a class="reference" href="#keyboard-events" id="id76" name="id76">Keyboard Events</a></li>
-<li><a class="reference" href="#signal-anything" id="id77" name="id77">Signal Anything</a></li>
-<li><a class="reference" href="#mochikit-support" id="id78" name="id78">MochiKit Support</a></li>
-<li><a class="reference" href="#mochikit-on-the-web" id="id79" name="id79">MochiKit on the Web</a></li>
+<li><a class="reference" href="#currency-formatter-example" id="id35" name="id35">Currency Formatter Example</a></li>
+<li><a class="reference" href="#percent-formatter-example" id="id36" name="id36">Percent Formatter Example</a></li>
+<li><a class="reference" href="#mochikit-logging" id="id37" name="id37">MochiKit.Logging</a></li>
+<li><a class="reference" href="#simple-logging" id="id38" name="id38">Simple Logging</a></li>
+<li><a class="reference" href="#logs-are-where" id="id39" name="id39">Logs Are Where?</a></li>
+<li><a class="reference" href="#bookmarklet-debugging" id="id40" name="id40">Bookmarklet Debugging</a></li>
+<li><a class="reference" href="#mochikit-loggingpane" id="id41" name="id41">MochiKit.LoggingPane</a></li>
+<li><a class="reference" href="#manually-creating-a-loggingpane" id="id42" name="id42">Manually creating a LoggingPane</a></li>
+<li><a class="reference" href="#inline-loggingpane-example" id="id43" name="id43">Inline LoggingPane Example</a></li>
+<li><a class="reference" href="#mochikit-dom" id="id44" name="id44">MochiKit.DOM</a></li>
+<li><a class="reference" href="#createdom" id="id45" name="id45">createDOM</a></li>
+<li><a class="reference" href="#createdom-example" id="id46" name="id46">createDOM Example</a></li>
+<li><a class="reference" href="#less-ugly" id="id47" name="id47">Less Ugly</a></li>
+<li><a class="reference" href="#flattening-for-the-dom" id="id48" name="id48">Flattening for the DOM</a></li>
+<li><a class="reference" href="#attributes" id="id49" name="id49">Attributes</a></li>
+<li><a class="reference" href="#alternating" id="id50" name="id50">Alternating</a></li>
+<li><a class="reference" href="#mochikit-interpreter-again" id="id51" name="id51">MochiKit Interpreter (Again)</a></li>
+<li><a class="reference" href="#scraping-text" id="id52" name="id52">Scraping Text</a></li>
+<li><a class="reference" href="#forms" id="id53" name="id53">Forms</a></li>
+<li><a class="reference" href="#manipulating-dom" id="id54" name="id54">Manipulating DOM</a></li>
+<li><a class="reference" href="#dom-attributes" id="id55" name="id55">DOM Attributes</a></li>
+<li><a class="reference" href="#dom-gotchas" id="id56" name="id56">DOM Gotchas</a></li>
+<li><a class="reference" href="#mochikit-color" id="id57" name="id57">MochiKit.Color</a></li>
+<li><a class="reference" href="#components-to-color" id="id58" name="id58">Components to Color</a></li>
+<li><a class="reference" href="#string-to-color" id="id59" name="id59">String to Color</a></li>
+<li><a class="reference" href="#dom-to-color" id="id60" name="id60">DOM to Color</a></li>
+<li><a class="reference" href="#nscolor-colors" id="id61" name="id61">NSColor colors</a></li>
+<li><a class="reference" href="#mixing-colors" id="id62" name="id62">Mixing colors</a></li>
+<li><a class="reference" href="#color-components" id="id63" name="id63">Color Components</a></li>
+<li><a class="reference" href="#mochikit-async" id="id64" name="id64">MochiKit.Async</a></li>
+<li><a class="reference" href="#wtf-is-a-deferred" id="id65" name="id65">WTF is a Deferred?</a></li>
+<li><a class="reference" href="#trivial-deferreds" id="id66" name="id66">Trivial Deferreds</a></li>
+<li><a class="reference" href="#timed-events" id="id67" name="id67">Timed Events</a></li>
+<li><a class="reference" href="#network-events" id="id68" name="id68">Network Events</a></li>
+<li><a class="reference" href="#deferred-usage" id="id69" name="id69">Deferred Usage</a></li>
+<li><a class="reference" href="#result-chaining" id="id70" name="id70">Result Chaining</a></li>
+<li><a class="reference" href="#deferred-chaining" id="id71" name="id71">Deferred Chaining</a></li>
+<li><a class="reference" href="#mochikit-signal" id="id72" name="id72">MochiKit.Signal</a></li>
+<li><a class="reference" href="#browser-events-suck" id="id73" name="id73">Browser Events Suck</a></li>
+<li><a class="reference" href="#connect-to-the-dom" id="id74" name="id74">connect to the DOM</a></li>
+<li><a class="reference" href="#custom-event-object" id="id75" name="id75">Custom Event Object</a></li>
+<li><a class="reference" href="#mouse-events" id="id76" name="id76">Mouse Events</a></li>
+<li><a class="reference" href="#keyboard-events" id="id77" name="id77">Keyboard Events</a></li>
+<li><a class="reference" href="#signal-anything" id="id78" name="id78">Signal Anything</a></li>
+<li><a class="reference" href="#mochikit-support" id="id79" name="id79">MochiKit Support</a></li>
+<li><a class="reference" href="#mochikit-on-the-web" id="id80" name="id80">MochiKit on the Web</a></li>
 </ul>
 </div>
 
@@ -450,44 +451,43 @@ ul.auto-toc {
 </ul>
 </div>
 <div class="slide" id="another-library">
-<h1>Another library?!</h1>
-<ul class="simple">
-<li>Prototype was undocumented, no tests, didn't play nice</li>
-<li>Dojo had no documentation or demos</li>
-<li>Everything else was outdated, not liberally licensed,
-not cross-platform</li>
-</ul>
+<h1>Another Library?!</h1>
+<p>(July 2005)</p>
+<dl class="docutils">
+<dt>Prototype:</dt>
+<dd>no docs or tests, mangles built-ins</dd>
+<dt>Dojo:</dt>
+<dd>no docs or demos</dd>
+</dl>
 </div>
 <div class="slide" id="mochikit-design-goals">
 <h1>MochiKit Design Goals</h1>
 <ul class="simple">
 <li>Documentation</li>
 <li>DOCUMENTATION</li>
-<li>Test early test often</li>
+<li>Lots of tests</li>
 <li>Stay out of the way (not a framework)</li>
-<li>Consistent</li>
-<li>Portable</li>
-<li>Workaround browser stupidity</li>
+<li>Consistent and portable</li>
 </ul>
 </div>
 <div class="slide" id="why-mochikit">
 <h1>Why MochiKit?</h1>
 <ul class="simple">
-<li>Extremely well documented, tested, stable</li>
-<li>Safari 2.0, Firefox 1.0, IE 6, Opera 8.5 (and others)</li>
-<li>Abstracts async behavior</li>
-<li>MochiKit.DOM syntax makes DOM painless</li>
-<li>MochiKit.Signal works around LOTS of browser misfeatures</li>
+<li>Good docs, well tested</li>
+<li>Async abstractions</li>
+<li>Painless DOM syntax</li>
+<li>Consistent browser events</li>
 <li>Python-like (think &quot;standard library&quot;)</li>
+<li>Safari 2.0, Firefox 1.0, IE 6, Opera 8.5 (and others)</li>
 </ul>
 </div>
 <div class="slide" id="why-not-mochikit">
-<h1>Why not MochiKit?</h1>
+<h1>Why Not MochiKit?</h1>
 <ul class="simple">
 <li>No support for IE 5.5</li>
 <li>No widgets</li>
 <li>No animation, transitions, etc.</li>
-<li>... but we're working on a Scriptaculous port (MochiKit 1.4)</li>
+<li>... MochiKit 1.4</li>
 </ul>
 </div>
 <div class="slide" id="mochikit-base">
@@ -499,38 +499,18 @@ not cross-platform</li>
 </ul>
 </div>
 <div class="slide" id="tostring-ambiguity">
-<h1>toString ambiguity</h1>
-<ul>
-<li><p class="first">Which one of these things is not like the other:</p>
-<blockquote>
+<h1>toString Ambiguity</h1>
 <ul class="simple">
-<li>[1]</li>
-<li>1.0</li>
-<li>&quot;1&quot;</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">They're all the same according to JavaScript's toString!  Totally useless
-for debugging.</p>
-</li>
+<li>[1].toString() === &quot;1&quot;</li>
+<li>(1).toString() === &quot;1&quot;</li>
+<li>&quot;1&quot;.toString() === &quot;1&quot;</li>
 </ul>
 </div>
 <div class="slide" id="repr-tostring">
 <h1>repr &gt; toString</h1>
-<ul>
-<li><p class="first">MochiKit provides repr() instead, just like Python.
-Think &quot;programmer representation&quot;.</p>
-<blockquote>
 <ul class="simple">
-<li>repr([1]) == &quot;[1]&quot;</li>
-<li>repr(1.0) == &quot;1&quot;</li>
-<li>repr(&quot;1&quot;) == &quot;&quot;1&quot;&quot;</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">repr understands primitive types, objects that implement <tt class="docutils literal"><span class="pre">repr</span></tt> or
-<tt class="docutils literal"><span class="pre">__repr__</span></tt></p>
-</li>
+<li>MochiKit provides repr() instead, just like Python.</li>
+<li>Unambiguous, extensible</li>
 </ul>
 </div>
 <div class="slide" id="mochikit-interpreter">
@@ -547,59 +527,43 @@ Think &quot;programmer representation&quot;.</p>
 </div>
 <script type="text/javascript" src="ui/mochikit/examples/interpreter.js"></script>
 </div>
-<div class="slide" id="compare-instead-of-operators">
-<h1>compare instead of operators</h1>
+<div class="slide" id="unreliable-operators">
+<h1>Unreliable Operators</h1>
 <ul class="simple">
-<li>JavaScript comparisons are WHACK (these are <tt class="docutils literal"><span class="pre">true</span></tt>!)<ul>
-<li>[1,&quot;2&quot;] == &quot;1,2&quot;</li>
-<li>([&quot;&quot;] == &quot;&quot;) &amp;&amp; ([] == &quot;&quot;) &amp;&amp; ([] != [&quot;&quot;])</li>
-</ul>
-</li>
-<li>compare(a, b) provides consistent results<ul>
-<li>Usable with Array.prototype.sort</li>
-<li>Understands String, Date, Array, Number, String, ...</li>
-<li>Can be extended with adapter registry</li>
-</ul>
-</li>
+<li>Most JavaScript comparisons based on toString</li>
+<li>Ambiguous, unreliable</li>
+<li>compare(a, b) provides consistent results</li>
+<li>Extensible</li>
 </ul>
 </div>
 <div class="slide" id="json-serialization">
-<h1>JSON serialization</h1>
+<h1>JSON Serialization</h1>
 <ul class="simple">
-<li>serializeJSON(object) -&gt; JSON string<ul>
-<li>Understands primitive types</li>
-<li>Will call <tt class="docutils literal"><span class="pre">json</span></tt> or <tt class="docutils literal"><span class="pre">__json__</span></tt> on objects if method exists</li>
-<li>Can be extended with adapter registry</li>
-</ul>
-</li>
+<li>serializeJSON(object) -&gt; JSON string</li>
+<li>Extensible</li>
 </ul>
 </div>
-<div class="slide" id="wait-adapters">
-<h1>Wait.. Adapters?</h1>
+<div class="slide" id="adapters">
+<h1>Adapters?</h1>
 <ul class="simple">
 <li>Not a good idea to hack on built-in objects</li>
 <li>MochiKit doesn't always know what you want to do</li>
-<li>Adapters let you extend existing functions<ul>
-<li>registerRepr</li>
-<li>registerComparator</li>
-<li>registerJSON</li>
-</ul>
-</li>
+<li>Adapters let you extend existing functions</li>
 </ul>
 </div>
-<div class="slide" id="registering-an-adapter">
-<h1>Registering an adapter</h1>
+<div class="slide" id="adapting">
+<h1>Adapting</h1>
 <dl class="docutils">
 <dt>name:</dt>
-<dd>a unique identifier for your adapter (can be used to unregister)</dd>
+<dd>unique identifier for your adapter</dd>
 <dt>check:</dt>
-<dd>a predicate, should wrap be called?</dd>
+<dd>predicate, should wrap be called?</dd>
 <dt>wrap:</dt>
 <dd>performs the operation</dd>
 </dl>
 </div>
 <div class="slide" id="dom-comparator-example">
-<h1>DOM comparator example</h1>
+<h1>DOM Comparator Example</h1>
 <p>Register HTML-based comparator for DOM nodes:</p>
 <pre class="literal-block">
 function isDOMNode(node) {
@@ -616,11 +580,15 @@ registerComparator(&quot;compareDOM&quot;,
 </div>
 <div class="slide" id="querystring">
 <h1>queryString</h1>
+<ul class="simple">
+<li>Easily build URL query strings</li>
+<li>queryString([&quot;foo&quot;, &quot;bar&quot;], [1, 2]) == &quot;foo=1&amp;bar=2&quot;</li>
+<li>queryString({foo: 1, bar: 2}) == &quot;foo=1&amp;bar=2&quot;</li>
+</ul>
+</div>
+<div class="slide" id="querystring-and-dom">
+<h1>queryString and DOM</h1>
 <ul>
-<li><p class="first">queryString([&quot;foo&quot;, &quot;bar&quot;], [1, 2]) == &quot;foo=1&amp;bar=2&quot;</p>
-</li>
-<li><p class="first">queryString({foo: 1, bar: 2}) == &quot;foo=1&amp;bar=2&quot;</p>
-</li>
 <li><p class="first">queryString(&quot;formNode&quot;) == &quot;foo=1&amp;bar=2&quot;, given:</p>
 <pre class="literal-block">
 &lt;form id=&quot;formNode&quot;&gt;
@@ -635,64 +603,62 @@ registerComparator(&quot;compareDOM&quot;,
 <h1>Mangling Objects</h1>
 <dl class="docutils">
 <dt>merge(obj[, ...]):</dt>
-<dd>Create a new object consisting of every property in the given objects
-(last object given takes precedence)</dd>
+<dd>New object, every prop:value of given objects</dd>
 <dt>update(obj[, ...]):</dt>
-<dd>In-place version of merge</dd>
+<dd>In-place merge</dd>
 <dt>updatetree(obj[, ...]):</dt>
-<dd>Recursive version of update</dd>
+<dd>Recursive update</dd>
 <dt>setdefault(obj[, ...]):</dt>
-<dd>Like update, but does NOT overwrite existing properties</dd>
+<dd>update, but no overwrite</dd>
 </dl>
 </div>
 <div class="slide" id="object-introspection">
 <h1>Object Introspection</h1>
 <dl class="docutils">
 <dt>keys(obj):</dt>
-<dd>returns an Array of every property on obj</dd>
+<dd>Array of every property on obj</dd>
 <dt>items(obj):</dt>
-<dd>returns an Array of every [property, value] on obj</dd>
+<dd>Array of every [property, value] on obj</dd>
 </dl>
 </div>
 <div class="slide" id="function-functions">
-<h1>Function functions</h1>
+<h1>Function Functions</h1>
 <dl class="docutils">
 <dt>bind(fn, self[, arg...]):</dt>
-<dd>new function, equivalent to fn.apply(self, concat(arg..., arguments))</dd>
+<dd>fn.apply(self, concat(arg..., arguments))</dd>
 <dt>method(self, fn[, arg...]):</dt>
 <dd>convenience form for bind</dd>
 <dt>itemgetter(name):</dt>
-<dd>new function(obj), equivalent to obj[name]</dd>
+<dd>obj[name]</dd>
 </dl>
 </div>
-<div class="slide" id="basic-array-functions">
-<h1>Basic Array functions</h1>
-<p>Array.prototype is missing lots of useful functions (cross-platform anyway)</p>
+<div class="slide" id="array-functions">
+<h1>Array Functions</h1>
+<p>Array missing lots of useful functionality</p>
 <dl class="docutils">
 <dt>concat(lst[, ...]):</dt>
 <dd>concatenates Arrays</dd>
 <dt>extend(self, seq, skip=0):</dt>
 <dd>extends a list in-place</dd>
 <dt>flattenArguments(args[, ...]):</dt>
-<dd>Creates a flat Array from a bunch of arguments, recursively flattening
-any Arrays that are encountered</dd>
+<dd>recursively flatten arguments to single Array</dd>
 </dl>
 </div>
-<div class="slide" id="compare-based-array-functions">
-<h1>compare-based Array functions</h1>
+<div class="slide" id="array-searching">
+<h1>Array Searching</h1>
 <dl class="docutils">
 <dt>findValue(lst, value, start=0, end=lst.length):</dt>
 <dd>finds index of value (using compare)</dd>
 <dt>findIdentical(lst, value, start=0, end=lst.length):</dt>
-<dd>finds index of value (using === for identity)</dd>
+<dd>finds index of value (using ===)</dd>
 <dt>listMin(lst):</dt>
 <dd>finds least item in lst (using compare)</dd>
 <dt>listMax(lst):</dt>
 <dd>finds greatest item in lst (using compare)</dd>
 </dl>
 </div>
-<div class="slide" id="higher-order-array-functions">
-<h1>Higher-order Array functions</h1>
+<div class="slide" id="higher-order-array">
+<h1>Higher-order Array</h1>
 <dl class="docutils">
 <dt>filter(predicate, lst):</dt>
 <dd>new Array where predicate(lst[n]) is true</dd>
@@ -704,27 +670,26 @@ any Arrays that are encountered</dd>
 </div>
 <div class="slide" id="mochikit-iter">
 <h1>MochiKit.Iter</h1>
-<p>MochiKit.Iter provides generalized iteration, very similar to Python's
+<p>MochiKit.Iter provides generalized iteration, like Python's
 iteration protocol and itertools module.</p>
 <ul class="simple">
 <li>Works great on Arrays, but also on anything iterable.</li>
 <li>Anything with a <tt class="docutils literal"><span class="pre">next</span></tt> method is iterable, and the iteration stops when
 StopIteration is thrown.</li>
-<li>Objects can define an <tt class="docutils literal"><span class="pre">iter</span></tt> method to return an iterable</li>
-<li>Can register adapters too, with registerIterable.</li>
+<li>Extensible</li>
 </ul>
 </div>
 <div class="slide" id="collapsing-iterators">
 <h1>Collapsing Iterators</h1>
 <dl class="docutils">
 <dt>exhaust(iterable):</dt>
-<dd>Iterate over <tt class="docutils literal"><span class="pre">iterable</span></tt> and throw away the results</dd>
+<dd>Iterate and ignore results</dd>
 <dt>list(iterable):</dt>
-<dd>Convert <tt class="docutils literal"><span class="pre">iterable</span></tt> to a new Array</dd>
+<dd>new Array</dd>
 <dt>sorted(iterable, cmp=compare):</dt>
-<dd>Return a sorted Array from <tt class="docutils literal"><span class="pre">iterable</span></tt> using <tt class="docutils literal"><span class="pre">cmp</span></tt> as the comparator</dd>
+<dd>sorted Array using cmp</dd>
 <dt>sum(iterable, start=0):</dt>
-<dd>Return the sum of each item in <tt class="docutils literal"><span class="pre">iterable</span></tt> plus the <tt class="docutils literal"><span class="pre">start</span></tt>.</dd>
+<dd>Return start plus sum of items</dd>
 </dl>
 </div>
 <div class="slide" id="iterating-iterables">
@@ -755,25 +720,12 @@ forEach(iterable, function (item) {
 <h1>Infinite Iterators</h1>
 <dl class="docutils">
 <dt>count(n=0):</dt>
-<dd>Iterates over a sequence of numbers (n, n + 1, n + 2, ...)</dd>
+<dd>n, n + 1, n + 2, ...</dd>
 <dt>cycle(iterable):</dt>
-<dd>Iterates over iterable and saves the results. Once iterable is exhausted,
-it iterates over the cached result Array indefinitely.</dd>
+<dd>while (true) { iterable[0], ..., iterable[N] }</dd>
 <dt>repeat(item):</dt>
-<dd>Returns an iterator that returns item over and over, same as
-cycle([item])</dd>
+<dd>item, item, item, item, ...</dd>
 </dl>
-</div>
-<div class="slide" id="should-i-care-about-iter">
-<h1>Should I care about Iter?</h1>
-<ul class="simple">
-<li>You don't need to understand it to understand MochiKit</li>
-<li>Used primarily to simplify internal code, helps a lot with DOM generation</li>
-<li>You might not need it, but it is convenient for people used to a more
-functional paradigm</li>
-<li>If you don't use itertools in Python, you probably won't directly use
-much of MochiKit.Iter either</li>
-</ul>
 </div>
 <div class="slide" id="mochikit-datetime">
 <h1>MochiKit.DateTime</h1>
@@ -786,49 +738,46 @@ much of MochiKit.Iter either</li>
 <h1>ISO Dates</h1>
 <dl class="docutils">
 <dt>isoDate(str):</dt>
-<dd>Convert ISO 8601 date to a Date object</dd>
+<dd>Date object from ISO 8601 date string</dd>
 <dt>toISODate(date):</dt>
-<dd>Convert a Date object to an ISO 8601 date</dd>
+<dd>Date object to ISO 8601 date string</dd>
 </dl>
 </div>
-<div class="slide" id="silly-american-dates">
-<h1>Silly American Dates</h1>
+<div class="slide" id="american-dates">
+<h1>American Dates</h1>
 <dl class="docutils">
 <dt>americanDate(str):</dt>
-<dd>Convert an MM/DD/YYYY date to a Date object</dd>
+<dd>MM/DD/YYYY to a Date object</dd>
 <dt>toAmericanDate(date):</dt>
-<dd>Convert a Date object to a M/D/YYYY date (1/1/2001)</dd>
+<dd>Date object to M/D/YYYY</dd>
 <dt>toPaddedAmericanDate(date):</dt>
-<dd>Convert a Date object to a MM/DM/YYYY date (01/01/2001)</dd>
+<dd>Date object to MM/DM/YYYY</dd>
 </dl>
 </div>
 <div class="slide" id="time-and-timestamps">
 <h1>Time and Timestamps</h1>
 <dl class="docutils">
 <dt>isoTimestamp(str):</dt>
-<dd>Convert a YYYY-MM-DD hh:mm:ss or YYYY-MM-DDThh:mm:ssZ timestamp to a
-Date object</dd>
+<dd>YYYY-MM-DDThh:mm:ssZ to Date object</dd>
 <dt>toISOTime(date):</dt>
-<dd>Convert a Date object to a hh:mm:ss string</dd>
+<dd>Date object to hh:mm:ss</dd>
 <dt>toISOTimestamp(date, realISO=false):</dt>
-<dd>Convert a Date object to a YYYY-MM-DD hh:mm:ss string. If realISO is true,
-then use the proper YYYY-MM-DDThh:mm:ssZ form.</dd>
+<dd>Date object to a YYYY-MM-DD hh:mm:ss (or YYYY-MM-DDThh:mm:ssZ)</dd>
 </dl>
 </div>
 <div class="slide" id="mochikit-format">
 <h1>MochiKit.Format</h1>
 <ul class="simple">
-<li>JavaScript doesn't really do string formatting</li>
-<li>Users like to see big numbers with thousands separators</li>
-<li>Number formatting based on Java's Number Format Pattern Syntax</li>
+<li>JavaScript has no sprintf</li>
+<li>Thousands separators help readability</li>
+<li>Based on Java's Number Format Pattern Syntax</li>
 </ul>
 </div>
-<div class="slide" id="simple-string-mangling">
-<h1>Simple String Mangling</h1>
+<div class="slide" id="whitespace-assassins">
+<h1>Whitespace Assassins</h1>
 <dl class="docutils">
 <dt>strip(str, chars=&quot;\s&quot;):</dt>
-<dd>Return a string based on str with leading and trailing whitespace stripped.
-If the chars regex is specified, it will be used instead of the default.</dd>
+<dd>strip leading and trailing whitespace</dd>
 <dt>lstrip(str, chars=&quot;\s&quot;):</dt>
 <dd>strip only leading whitespace</dd>
 <dt>rstrip(str, chars=&quot;\s&quot;):</dt>
@@ -838,19 +787,22 @@ If the chars regex is specified, it will be used instead of the default.</dd>
 <div class="slide" id="number-formatting">
 <h1>Number Formatting</h1>
 <dl class="docutils">
-<dt>numberFormatter(pattern, placeholder=&quot;&quot;, locale=&quot;default&quot;):</dt>
-<dd>Return a function that formats numbers using the given pattern</dd>
+<dt>numberFormatter(pattern):</dt>
+<dd>new function that formats numbers to pattern</dd>
 </dl>
 </div>
-<div class="slide" id="number-formatter-examples">
-<h1>Number Formatter Examples</h1>
+<div class="slide" id="currency-formatter-example">
+<h1>Currency Formatter Example</h1>
 <p>Currency:</p>
 <pre class="literal-block">
 &gt;&gt;&gt; dollarFormat = numberFormatter(&quot;$###,###.##&quot;)
 &gt;&gt;&gt; dollarFormat(1234567.89)
 &quot;$1,234,567.89&quot;
 </pre>
-<p>Percents:</p>
+</div>
+<div class="slide" id="percent-formatter-example">
+<h1>Percent Formatter Example</h1>
+<p>Percent:</p>
 <pre class="literal-block">
 &gt;&gt;&gt; percentFormat = numberFormatter(&quot;###,###%&quot;)
 &gt;&gt;&gt; percentFormat(123.45)
@@ -862,44 +814,40 @@ If the chars regex is specified, it will be used instead of the default.</dd>
 <ul class="simple">
 <li>alert() sucks</li>
 <li>Debugging is hard enough</li>
-<li>Not every browser has FireBug</li>
-<li>I've had no luck with Venkman</li>
-<li>Less luck with Microsoft's Script Debugger</li>
+<li>FireBug not portable</li>
+<li>Venkman hard to use</li>
+<li>Microsoft Script Debugger....</li>
 </ul>
 </div>
 <div class="slide" id="simple-logging">
-<h1>Simple logging</h1>
+<h1>Simple Logging</h1>
 <dl class="docutils">
 <dt>log(msg):</dt>
 <dd>Logs a message at the INFO level</dd>
-<dt>logDebug(msg):</dt>
-<dd>Logs a message at the DEBUG level</dd>
 </dl>
-<p>logWarning, logError, logFatal...</p>
+<p>logDebug, logWarning, logError, logFatal...</p>
 </div>
-<div class="slide" id="where-d-my-log-messages-go">
-<h1>Where'd my log messages go?</h1>
-<ul class="simple">
-<li>In Safari, Firefox with FireBug, and Opera they will be logged to the
-appropriate console (but you can turn this off).</li>
-<li>Will also go to any logging listener</li>
-<li>Logging listeners are just functions that take log message objects</li>
-</ul>
+<div class="slide" id="logs-are-where">
+<h1>Logs Are Where?</h1>
+<dl class="docutils">
+<dt>Native console:</dt>
+<dd>Safari, FireBug, Opera</dd>
+<dt>Logging listener(s):</dt>
+<dd>functions called with log message objects</dd>
+</dl>
 </div>
 <div class="slide" id="bookmarklet-debugging">
 <h1>Bookmarklet Debugging</h1>
-<p>Just bookmark this:</p>
+<p>Pop-up MochiKit.LoggingPane:</p>
 <pre class="literal-block">
 javascript:MochiKit.Logging.logger.debuggingBookmarklet()
 </pre>
-<p>Currently, this is a pop-up MochiKit.LoggingPane.</p>
 </div>
 <div class="slide" id="mochikit-loggingpane">
 <h1>MochiKit.LoggingPane</h1>
 <ul class="simple">
-<li>A usable MochiKit.Logging listener</li>
+<li>MochiKit.Logging listener</li>
 <li>Can be used in-line or as a pop-up window</li>
-<li>Could be fancier, but it gets the job done</li>
 </ul>
 </div>
 <div class="slide" id="manually-creating-a-loggingpane">
@@ -920,22 +868,22 @@ createLoggingPane(true)
 <div class="slide" id="mochikit-dom">
 <h1>MochiKit.DOM</h1>
 <ul class="simple">
-<li>DOM is painful, but it doesn't have to be</li>
-<li>Functions for finding, creating, modifying DOM nodes</li>
-<li>Most functions will take either a string or a DOM node reference, saving
-you the trouble of getElementById(s), $(s) or similar.</li>
+<li>W3C bindings are painful</li>
+<li>Easily find, create, mangle DOM nodes</li>
+<li>Don't need $(s), automatic</li>
+<li>Works on responseXML too!</li>
 </ul>
 </div>
 <div class="slide" id="createdom">
 <h1>createDOM</h1>
 <ul class="simple">
-<li>Does a good job of turning any object into a DOM node</li>
-<li>Strings and numbers to text, flattens Arrays or iterators of anything</li>
-<li>Extensible with an adapter registry</li>
+<li>Any object into a DOM node</li>
+<li>Strings to text, flattens iterators</li>
+<li>Extensible</li>
 </ul>
 </div>
 <div class="slide" id="createdom-example">
-<h1>createDOM example</h1>
+<h1>createDOM Example</h1>
 <p>createDOM(tagName, attributes, contents...)</p>
 <p>A simple list:</p>
 <pre class="literal-block">
@@ -943,32 +891,30 @@ var node = createDOM(&quot;ul&quot;, null,
     createDOM(&quot;li&quot;, null, &quot;first&quot;),
     createDOM(&quot;li&quot;, null, &quot;second&quot;));
 </pre>
-<p>Equivalent to:</p>
+<p>Renders as:</p>
 <pre class="literal-block">
 &lt;ul&gt;&lt;li&gt;first&lt;/li&gt;&lt;li&gt;second&lt;/li&gt;&lt;/ul&gt;
 </pre>
 </div>
-<div class="slide" id="but-that-s-still-ugly">
-<h1>But that's still ugly...</h1>
-<p>We use aliases instead, for all of the common tags:</p>
+<div class="slide" id="less-ugly">
+<h1>Less Ugly</h1>
+<p>Use aliases instead, supports common tags:</p>
 <pre class="literal-block">
 var node = UL(null,
     LI(&quot;first&quot;),
     LI(&quot;second&quot;));
 </pre>
-<p>Note that MochiKit 1.3 and later allows a text node as the first
-parameter for convenience (saves a lot of &quot;null&quot; typing)</p>
 </div>
-<div class="slide" id="flattening-lists">
-<h1>Flattening lists</h1>
-<p>Functional programming comes in handy for DOM creation:</p>
+<div class="slide" id="flattening-for-the-dom">
+<h1>Flattening for the DOM</h1>
+<p>Functional style handy for DOM creation:</p>
 <pre class="literal-block">
 var items = [&quot;first&quot;, &quot;second&quot;];
 var node = UL(null, map(LI, items));
 </pre>
 </div>
-<div class="slide" id="what-about-attributes">
-<h1>What about attributes?</h1>
+<div class="slide" id="attributes">
+<h1>Attributes</h1>
 <p>First parameter is either an object (attributes), or a string (text node):</p>
 <pre class="literal-block">
 var classes = repeat({&quot;class&quot;: &quot;itemclass&quot;});
@@ -979,9 +925,9 @@ var node = UL({&quot;class&quot;: &quot;listclass&quot;},
     map(LI, classes, items));
 </pre>
 </div>
-<div class="slide" id="alternating-classes">
-<h1>Alternating classes</h1>
-<p>More MochiKit.Iter goodies, good for table rows:</p>
+<div class="slide" id="alternating">
+<h1>Alternating</h1>
+<p>MochiKit.Iter good for table rows:</p>
 <pre class="literal-block">
 var classes = cycle(
     {&quot;class&quot;: &quot;even&quot;},
@@ -1008,7 +954,7 @@ var node = UL(null,
 <script type="text/javascript" src="ui/mochikit/examples/dominterpreter.js"></script>
 </div>
 <div class="slide" id="scraping-text">
-<h1>Scraping text</h1>
+<h1>Scraping Text</h1>
 <p>Scraping text is useful for progressive enhancement...</p>
 <p>HTML:</p>
 <pre class="literal-block">
@@ -1020,8 +966,8 @@ var node = UL(null,
 &quot;text is here&quot;
 </pre>
 </div>
-<div class="slide" id="reading-forms">
-<h1>Reading forms</h1>
+<div class="slide" id="forms">
+<h1>Forms</h1>
 <p>HTML:</p>
 <pre class="literal-block">
 &lt;form id=&quot;formNode&quot;&gt;
@@ -1035,24 +981,24 @@ var node = UL(null,
 [[&quot;foo&quot;, &quot;bar&quot;], [&quot;1&quot;, &quot;2&quot;]]
 </pre>
 </div>
-<div class="slide" id="manipulating-dom-nodes">
-<h1>Manipulating DOM nodes</h1>
+<div class="slide" id="manipulating-dom">
+<h1>Manipulating DOM</h1>
 <dl class="docutils">
 <dt>appendChildNodes(parentNode, childNode...):</dt>
-<dd>Add nodes to parentNode using the DOM coercion rules from createDOM</dd>
+<dd>Add nodes via createDOM</dd>
 <dt>replaceChildNodes(parentNode, childNode...):</dt>
-<dd>Remove all children from parentNode, then appendChildNodes</dd>
+<dd>Remove all, then append</dd>
 <dt>swapDOM(dest, src):</dt>
-<dd>Replace dest with src (if src is null, then dest is removed)</dd>
+<dd>Replace dest with src (or remove)</dd>
 </dl>
 </div>
-<div class="slide" id="manipulating-dom-attributes">
-<h1>Manipulating DOM attributes</h1>
+<div class="slide" id="dom-attributes">
+<h1>DOM Attributes</h1>
 <dl class="docutils">
 <dt>setNodeAttribute(node, attr, value):</dt>
-<dd>Set the node attribute attr=value</dd>
+<dd>node attribute attr=value</dd>
 <dt>updateNodeAttributes(node, attrs):</dt>
-<dd>Set the node attributes based on the object attrs</dd>
+<dd>Set the node attributes from object attrs</dd>
 </dl>
 </div>
 <div class="slide" id="dom-gotchas">
@@ -1071,116 +1017,102 @@ var node = UL(null,
 <li>Normalized, all components from [0.0, 1.0]</li>
 </ul>
 </div>
-<div class="slide" id="creating-colors-from-components">
-<h1>Creating colors from components</h1>
+<div class="slide" id="components-to-color">
+<h1>Components to Color</h1>
 <ul class="simple">
 <li>Color.fromRGB(r, g, b, alpha=1.0)</li>
-<li>Color.fromHSL(h, s, l, alpha=1.0)</li>
-<li>Color.fromHSV(h, s, v, alpha=1.0)</li>
+<li>fromHSL, fromHSV</li>
+<li>Will also take objects, e.g. {r: 1, g: 0, b: 0, a: 1}</li>
 </ul>
-<p>Will also take objects, e.g. {r: 1, g: 0, b: 0, a: 1}</p>
 </div>
-<div class="slide" id="creating-colors-from-strings">
-<h1>Creating colors from strings</h1>
+<div class="slide" id="string-to-color">
+<h1>String to Color</h1>
 <dl class="docutils">
 <dt>Color.fromString(str):</dt>
-<dd>Generally &quot;does what you mean&quot; with any valid CSS color description.
-&quot;rgb(...)&quot;, &quot;hsl(...)&quot;, &quot;#RRGGBB&quot;, &quot;blue&quot;</dd>
+<dd>Any valid CSS color description.  &quot;rgb(...)&quot;, &quot;hsl(...)&quot;, &quot;#RRGGBB&quot;, &quot;blue&quot;</dd>
 </dl>
 <p>Implementations in fromRGBString, fromHSLString, fromHexString, fromName.</p>
 </div>
-<div class="slide" id="creating-colors-from-dom-elements">
-<h1>Creating colors from DOM elements</h1>
+<div class="slide" id="dom-to-color">
+<h1>DOM to Color</h1>
 <ul class="simple">
 <li>Color.fromBackground(node)</li>
 <li>Color.fromComputedStyle(node, style, css)</li>
 <li>Color.fromText(node)</li>
 </ul>
 </div>
-<div class="slide" id="built-in-nscolor-colors">
-<h1>Built-in NSColor colors</h1>
-<p>NSColor-based constructors for basic colors</p>
+<div class="slide" id="nscolor-colors">
+<h1>NSColor colors</h1>
+<p>Cocoa-based constructors for basic colors</p>
 <ul class="simple">
 <li>Color.whiteColor()</li>
-<li>Color.blueColor()</li>
-<li>Color.transparentColor()</li>
-<li>...</li>
+<li>blueColor, transparentColor, ...</li>
 </ul>
 </div>
 <div class="slide" id="mixing-colors">
 <h1>Mixing colors</h1>
 <ul class="simple">
 <li>color.blendedColor(otherColor, fraction)</li>
-<li>color.colorWithHue(hue)</li>
-<li>color.colorWithLevel(level)</li>
-<li>color.colorWithSaturation(saturation)</li>
-<li>color.colorWithAlpha(alpha)</li>
+<li>color.colorWithHue, colorWithLevel, ...</li>
 </ul>
 </div>
-<div class="slide" id="getting-color-values">
-<h1>Getting color values</h1>
+<div class="slide" id="color-components">
+<h1>Color Components</h1>
 <p>Objects:</p>
 <ul class="simple">
-<li>color.asRGB()</li>
-<li>color.asHSL()</li>
-<li>color.asHSV()</li>
+<li>color.asRGB(), asHSL, asHSV</li>
 </ul>
 <p>Strings:</p>
 <ul class="simple">
-<li>color.toHexString()</li>
-<li>color.toRGBString()</li>
-<li>color.toHSLString()</li>
+<li>color.toHexString(), toRGBString, toHSLString</li>
 </ul>
 </div>
 <div class="slide" id="mochikit-async">
 <h1>MochiKit.Async</h1>
 <ul class="simple">
-<li>Yes, there is AJAX</li>
-<li>Generalized asynchronous model based on Twisted</li>
-<li>Handles XMLHttpRequest and timed events (setTimeout)</li>
+<li>AJAX!</li>
+<li>Model based on Twisted</li>
+<li>XMLHttpRequest and timed events (setTimeout)</li>
 </ul>
 </div>
 <div class="slide" id="wtf-is-a-deferred">
 <h1>WTF is a Deferred?</h1>
 <ul class="simple">
-<li>A &quot;promise&quot; to call back exactly once with a single result (or error)
-at some time (could be immediately!)</li>
+<li>A &quot;promise&quot; for a result</li>
 <li>Can be chained</li>
-<li>Model works in any asynchronous platform with nearly any language</li>
-<li>Not &quot;ideal&quot; API, but without threads or anything resembling coroutines
-it's the best you can do.</li>
+<li>Model on any asynchronous platform</li>
+<li>Not &quot;ideal&quot; API, but no coroutines or threads</li>
 </ul>
 </div>
 <div class="slide" id="trivial-deferreds">
 <h1>Trivial Deferreds</h1>
 <dl class="docutils">
 <dt>succeed(value):</dt>
-<dd>A successful deferred that will callback with value</dd>
+<dd>successful Deferred from value</dd>
 <dt>fail(error):</dt>
-<dd>A failed deferred that will errback with value</dd>
+<dd>failed Deferred from error</dd>
 <dt>maybeDeferred(func, arguments..):</dt>
-<dd>Call a function and make sure it returns a Deferred. Non-deferred return
-values get wrapped with succeed, and errors get wrapped with fail.</dd>
+<dd>Deferred from func(args..) call</dd>
 </dl>
 </div>
 <div class="slide" id="timed-events">
 <h1>Timed Events</h1>
 <dl class="docutils">
 <dt>wait(seconds, value):</dt>
-<dd>Return a Deferred that calls back with value after seconds have passed</dd>
+<dd>Deferred that waits</dd>
 <dt>callLater(seconds, func, arguments...):</dt>
-<dd>Return a Deferred that will call func(arguments) after seconds have passed</dd>
+<dd>Deferred that waits, then calls</dd>
 </dl>
 </div>
 <div class="slide" id="network-events">
 <h1>Network Events</h1>
 <dl class="docutils">
 <dt>doSimpleXMLHttpRequest(url[, queryArguments]):</dt>
-<dd>Set up a GET XMLHttpRequest to url and return a Deferred. The Deferred
-will callback with the XMLHttpRequest instance.</dd>
+<dd>Deferred from XMLHttpRequest GET</dd>
 <dt>loadJSONDoc(url[, queryArguments]):</dt>
-<dd>Set up a simple XMLHttpRequest, process its responseText as JSON, and
-callback with the JSON object.</dd>
+<dd>Deferred from XMLHttpRequest GET then eval</dd>
+<dt>sendXMLHttpRequest(req, content):</dt>
+<dd>Deferred from async XMLHttpRequest</dd>
 </dl>
 </div>
 <div class="slide" id="deferred-usage">
@@ -1197,52 +1129,46 @@ d.addErrback(logError);
 </div>
 <div class="slide" id="result-chaining">
 <h1>Result Chaining</h1>
-<p>The implementation of loadJSONDoc looks like this:</p>
+<p>loadJSONDoc implementation:</p>
 <pre class="literal-block">
 var d = doSimpleXMLHttpRequest(url);
 d.addCallback(evalJSONDoc);
 return d;
 </pre>
-<p>Further callbacks get the result of evalJSONDoc, not the original
-doSimpleXMLHttpRequest result.</p>
+<p>Uses Deferred's chained results</p>
 </div>
 <div class="slide" id="deferred-chaining">
 <h1>Deferred Chaining</h1>
 <p>Returning a Deferred from a callback will &quot;pause&quot; the callback chain:</p>
 <pre class="literal-block">
-function gotDocument(json) {
-    // ...
-}
-function delay(res) {
-    return wait(2.0, res);
-}
+function gotDocument(json) { /* ... */ }
+function delay(res) { return wait(2.0, res); }
 var d = loadJSONDoc(&quot;example.json&quot;);
 d.addCallback(delay);
 d.addCallback(gotDocument);
-d.addErrback(logError);
 </pre>
 </div>
 <div class="slide" id="mochikit-signal">
 <h1>MochiKit.Signal</h1>
 <ul class="simple">
 <li>Crown jewel of MochiKit 1.3</li>
-<li>Sorry it took so long</li>
+<li>Sorry it took so long!</li>
 <li>Browsers totally suck at events</li>
 </ul>
 </div>
-<div class="slide" id="what-sucks-about-browser-events">
-<h1>What sucks about browser events?</h1>
+<div class="slide" id="browser-events-suck">
+<h1>Browser Events Suck</h1>
 <ul class="simple">
 <li>IE is totally different</li>
 <li>IE's garbage &quot;collector&quot;</li>
 <li>Safari needs help</li>
 <li>They all disagree on pixel positions</li>
-<li>Damn near impossible to get key events to work properly cross-platform</li>
+<li>Key events seriously borked</li>
 </ul>
 </div>
 <div class="slide" id="connect-to-the-dom">
 <h1>connect to the DOM</h1>
-<p>This works everywhere:</p>
+<p>Works everywhere:</p>
 <pre class="literal-block">
 function myClick(e) {
     var mouse = e.mouse();
@@ -1255,13 +1181,13 @@ connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
 <div class="slide" id="custom-event-object">
 <h1>Custom Event Object</h1>
 <ul class="simple">
-<li>MochiKit.Signal gives you a consistent event object, NOT the browser's.</li>
-<li>e.type() is the event type (doesn't include the &quot;on&quot; prefix)</li>
+<li>Consistent event object, NOT the browser's.</li>
+<li>e.type() is the event type (no &quot;on&quot; prefix)</li>
 <li>e.target() is the event target</li>
-<li>e.mouse() has consistent client and page coordinates</li>
-<li>e.key() has consistent keyboard state</li>
-<li>... and consistent key codes and key names!!&#64;#!</li>
-<li>e.stop() does both W3C stopPropagation and preventDefault for convenience</li>
+<li>e.mouse() has mouse coordinates</li>
+<li>e.key() for keyboard state</li>
+<li>e.modifiers() for keyboard modifiers</li>
+<li>e.stop() stopPropagation and preventDefault</li>
 </ul>
 </div>
 <div class="slide" id="mouse-events">
@@ -1317,7 +1243,7 @@ connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
 <div class="slide" id="signal-anything">
 <h1>Signal Anything</h1>
 <ul class="simple">
-<li>You can use MochiKit.Signal to broadcast your own events</li>
+<li>Broadcast your own events!</li>
 <li>connect() and disconnect() are the same</li>
 <li>signal(src, signal, args...) to fire the event</li>
 </ul>
