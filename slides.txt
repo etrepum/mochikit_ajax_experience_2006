@@ -81,9 +81,9 @@ MochiKit.Base
 toString Ambiguity
 ==================
 
-* [1].toString() === "1"
-* (1).toString() === "1"
-* "1".toString() === "1"
+* [1].toString() === '1'
+* (1).toString() === '1'
+* '1'.toString() === '1'
 
 
 repr > toString
@@ -110,7 +110,7 @@ Unreliable Operators
 ====================
 
 * Most JavaScript comparisons based on toString
-* .. but [1] == [1] is false!
+* [1] == [1] is false!
 * compare(a, b) provides consistent results
 * Extensible
 
@@ -137,7 +137,7 @@ name:
     unique identifier for your adapter
 
 check:
-    predicate, should wrap be called?
+    should wrap be called?
 
 wrap:
     performs the operation
@@ -149,14 +149,14 @@ DOM Comparator Example
 Register HTML-based comparator for DOM nodes::
 
     function isDOMNode(node) {
-        return typeof(node.nodeType) == "number";
+        return typeof(node.nodeType) == 'number';
     }
 
     function compareDOMNodes(a, b) {
         return compare(a.innerHTML, b.innerHTML);
     }
 
-    registerComparator("compareDOM",
+    registerComparator('compareDOM',
         isDOMNode, compareDOMNode);
 
 
@@ -164,14 +164,14 @@ queryString
 ===========
 
 * Easily build URL query strings
-* queryString(["foo", "bar"], [1, 2]) == "foo=1&bar=2"
-* queryString({foo: 1, bar: 2}) == "foo=1&bar=2"
+* queryString(['foo', 'bar'], [1, 2]) == 'foo=1&bar=2'
+* queryString({foo: 1, bar: 2}) == 'foo=1&bar=2'
 
 
 queryString and DOM
 ===================
 
-* queryString("formNode") == "foo=1&bar=2", given::
+* queryString('formNode') == 'foo=1&bar=2', given::
 
     <form id="formNode">
       <input type="hidden" name="foo" value="1" />
@@ -252,8 +252,8 @@ listMax(lst):
 Higher-order Array
 ==================
 
-filter(predicate, lst):
-    Array where predicate(lst[n])
+filter(func, lst):
+    Array where funcn(lst[n])
 
 map(func, lst):
     [func(lst[0]), ...]
@@ -377,7 +377,7 @@ MochiKit.Format
 
 * JavaScript has no sprintf
 * Thousands separators help readability
-* Java's Number Format Pattern Syntax
+* Java's NumberFormat pattern syntax
 
 
 Whitespace Assassins
@@ -405,7 +405,7 @@ Currency Formatter Example
     
 Currency::
 
-    >>> money = numberFormatter("$###,###.##")
+    >>> money = numberFormatter('$###,###.##')
     >>> money(1234567.89)
     "$1,234,567.89"
 
@@ -415,7 +415,7 @@ Percent Formatter Example
 
 Percent::
 
-    >>> percent = numberFormatter("###,###%")
+    >>> percent = numberFormatter('###,###%')
     >>> percent(123.45)
     "12,345%"
 
@@ -511,9 +511,9 @@ createDOM(tagName, attributes, contents...)
 
 A simple list::
 
-    var node = createDOM("ul", null,
-        createDOM("li", null, "first"),
-        createDOM("li", null, "second"));
+    var node = createDOM('ul', null,
+        createDOM('li', null, 'first'),
+        createDOM('li', null, 'second'));
 
 Renders as::
 
@@ -526,8 +526,8 @@ Less Ugly
 Use aliases instead, supports common tags::
 
     var node = UL(null,
-        LI("first"),
-        LI("second"));
+        LI('first'),
+        LI('second'));
 
 
 Flattening for the DOM
@@ -535,7 +535,7 @@ Flattening for the DOM
 
 Functional style handy for DOM creation::
 
-    var items = ["first", "second"];
+    var items = ['first', 'second'];
     var node = UL(null, map(LI, items));
 
 
@@ -544,11 +544,11 @@ Attributes
 
 First parameter is either an object (attributes), or a string (text node)::
 
-    var classes = repeat({"class": "itemclass"});
+    var classes = repeat({'class': 'itemclass'});
 
-    var items = ["first", "second"];
+    var items = ['first', 'second'];
 
-    var node = UL({"class": "listclass"},
+    var node = UL({'class': 'listclass'},
         map(LI, classes, items));
 
 
@@ -558,10 +558,10 @@ Alternating
 MochiKit.Iter good for table rows::
 
     var classes = cycle(
-        {"class": "even"},
-        {"class": "odd"});
+        {'class': 'even'},
+        {'class': 'odd'});
 
-    var items = ["first", "second"];
+    var items = ['first', 'second'];
 
     var node = UL(null,
         map(LI, classes, items));
@@ -590,7 +590,7 @@ HTML::
 
 JavaScript::
 
-    >>> scrapeText("scrape_me");
+    >>> scrapeText('scrape_me');
     "text is here"
 
 
@@ -606,7 +606,7 @@ HTML::
 
 JavaScript::
 
-    >>> formContents("formNode")
+    >>> formContents('formNode')
     [["foo", "bar"], ["1", "2"]]
 
 
@@ -663,10 +663,10 @@ String to Color
 Color.fromString(str):
     Color from any valid CSS color description
 
-- "rgb(...)"
-- "hsl(...)"
-- "#RRGGBB"
-- "blue"
+- 'rgb(...)'
+- 'hsl(...)'
+- '#RRGGBB'
+- 'blue'
 
 
 DOM to Color
@@ -789,7 +789,7 @@ Returning a Deferred from a callback will "pause" the callback chain::
     
     function gotDocument(json) { /* ... */ }
     function delay(res) { return wait(2.0, res); }
-    var d = loadJSONDoc("example.json");
+    var d = loadJSONDoc('example.json');
     d.addCallback(delay);
     d.addCallback(gotDocument);
         
@@ -819,10 +819,10 @@ Works everywhere::
 
     function myClick(e) {
         var mouse = e.mouse();
-        log("page coordinates: " + mouse.page);
-        log("client coordinates: " + mouse.client);
+        log('page coordinates: ' + mouse.page);
+        log('client coordinates: ' + mouse.client);
     }
-    connect("element_id", "onclick", myClick);
+    connect('element_id', 'onclick', myClick);
 
 
 Custom Event Object

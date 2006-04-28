@@ -418,9 +418,9 @@ ul.auto-toc {
 <div class="slide" id="tostring-ambiguity">
 <h1>toString Ambiguity</h1>
 <ul class="simple">
-<li>[1].toString() === &quot;1&quot;</li>
-<li>(1).toString() === &quot;1&quot;</li>
-<li>&quot;1&quot;.toString() === &quot;1&quot;</li>
+<li>[1].toString() === '1'</li>
+<li>(1).toString() === '1'</li>
+<li>'1'.toString() === '1'</li>
 </ul>
 </div>
 <div class="slide" id="repr-tostring">
@@ -451,8 +451,7 @@ will be demonstrated during this slide.</p>
 <h1>Unreliable Operators</h1>
 <ul class="simple">
 <li>Most JavaScript comparisons based on toString</li>
-<li><!-- but [1] == [1] is false! -->
-</li>
+<li>[1] == [1] is false!</li>
 <li>compare(a, b) provides consistent results</li>
 <li>Extensible</li>
 </ul>
@@ -478,7 +477,7 @@ will be demonstrated during this slide.</p>
 <dt>name:</dt>
 <dd>unique identifier for your adapter</dd>
 <dt>check:</dt>
-<dd>predicate, should wrap be called?</dd>
+<dd>should wrap be called?</dd>
 <dt>wrap:</dt>
 <dd>performs the operation</dd>
 </dl>
@@ -488,14 +487,14 @@ will be demonstrated during this slide.</p>
 <p>Register HTML-based comparator for DOM nodes:</p>
 <pre class="literal-block">
 function isDOMNode(node) {
-    return typeof(node.nodeType) == &quot;number&quot;;
+    return typeof(node.nodeType) == 'number';
 }
 
 function compareDOMNodes(a, b) {
     return compare(a.innerHTML, b.innerHTML);
 }
 
-registerComparator(&quot;compareDOM&quot;,
+registerComparator('compareDOM',
     isDOMNode, compareDOMNode);
 </pre>
 </div>
@@ -503,14 +502,14 @@ registerComparator(&quot;compareDOM&quot;,
 <h1>queryString</h1>
 <ul class="simple">
 <li>Easily build URL query strings</li>
-<li>queryString([&quot;foo&quot;, &quot;bar&quot;], [1, 2]) == &quot;foo=1&amp;bar=2&quot;</li>
-<li>queryString({foo: 1, bar: 2}) == &quot;foo=1&amp;bar=2&quot;</li>
+<li>queryString(['foo', 'bar'], [1, 2]) == 'foo=1&amp;bar=2'</li>
+<li>queryString({foo: 1, bar: 2}) == 'foo=1&amp;bar=2'</li>
 </ul>
 </div>
 <div class="slide" id="querystring-and-dom">
 <h1>queryString and DOM</h1>
 <ul>
-<li><p class="first">queryString(&quot;formNode&quot;) == &quot;foo=1&amp;bar=2&quot;, given:</p>
+<li><p class="first">queryString('formNode') == 'foo=1&amp;bar=2', given:</p>
 <pre class="literal-block">
 &lt;form id=&quot;formNode&quot;&gt;
   &lt;input type=&quot;hidden&quot; name=&quot;foo&quot; value=&quot;1&quot; /&gt;
@@ -581,8 +580,8 @@ registerComparator(&quot;compareDOM&quot;,
 <div class="slide" id="higher-order-array">
 <h1>Higher-order Array</h1>
 <dl class="docutils">
-<dt>filter(predicate, lst):</dt>
-<dd>Array where predicate(lst[n])</dd>
+<dt>filter(func, lst):</dt>
+<dd>Array where funcn(lst[n])</dd>
 <dt>map(func, lst):</dt>
 <dd>[func(lst[0]), ...]</dd>
 <dt>keyComparator(key):</dt>
@@ -691,7 +690,7 @@ forEach(iterable, function (item) {
 <ul class="simple">
 <li>JavaScript has no sprintf</li>
 <li>Thousands separators help readability</li>
-<li>Java's Number Format Pattern Syntax</li>
+<li>Java's NumberFormat pattern syntax</li>
 </ul>
 </div>
 <div class="slide" id="whitespace-assassins">
@@ -716,7 +715,7 @@ forEach(iterable, function (item) {
 <h1>Currency Formatter Example</h1>
 <p>Currency:</p>
 <pre class="literal-block">
-&gt;&gt;&gt; money = numberFormatter(&quot;$###,###.##&quot;)
+&gt;&gt;&gt; money = numberFormatter('$###,###.##')
 &gt;&gt;&gt; money(1234567.89)
 &quot;$1,234,567.89&quot;
 </pre>
@@ -725,7 +724,7 @@ forEach(iterable, function (item) {
 <h1>Percent Formatter Example</h1>
 <p>Percent:</p>
 <pre class="literal-block">
-&gt;&gt;&gt; percent = numberFormatter(&quot;###,###%&quot;)
+&gt;&gt;&gt; percent = numberFormatter('###,###%')
 &gt;&gt;&gt; percent(123.45)
 &quot;12,345%&quot;
 </pre>
@@ -809,9 +808,9 @@ createLoggingPane(true)
 <p>createDOM(tagName, attributes, contents...)</p>
 <p>A simple list:</p>
 <pre class="literal-block">
-var node = createDOM(&quot;ul&quot;, null,
-    createDOM(&quot;li&quot;, null, &quot;first&quot;),
-    createDOM(&quot;li&quot;, null, &quot;second&quot;));
+var node = createDOM('ul', null,
+    createDOM('li', null, 'first'),
+    createDOM('li', null, 'second'));
 </pre>
 <p>Renders as:</p>
 <pre class="literal-block">
@@ -823,15 +822,15 @@ var node = createDOM(&quot;ul&quot;, null,
 <p>Use aliases instead, supports common tags:</p>
 <pre class="literal-block">
 var node = UL(null,
-    LI(&quot;first&quot;),
-    LI(&quot;second&quot;));
+    LI('first'),
+    LI('second'));
 </pre>
 </div>
 <div class="slide" id="flattening-for-the-dom">
 <h1>Flattening for the DOM</h1>
 <p>Functional style handy for DOM creation:</p>
 <pre class="literal-block">
-var items = [&quot;first&quot;, &quot;second&quot;];
+var items = ['first', 'second'];
 var node = UL(null, map(LI, items));
 </pre>
 </div>
@@ -839,11 +838,11 @@ var node = UL(null, map(LI, items));
 <h1>Attributes</h1>
 <p>First parameter is either an object (attributes), or a string (text node):</p>
 <pre class="literal-block">
-var classes = repeat({&quot;class&quot;: &quot;itemclass&quot;});
+var classes = repeat({'class': 'itemclass'});
 
-var items = [&quot;first&quot;, &quot;second&quot;];
+var items = ['first', 'second'];
 
-var node = UL({&quot;class&quot;: &quot;listclass&quot;},
+var node = UL({'class': 'listclass'},
     map(LI, classes, items));
 </pre>
 </div>
@@ -852,10 +851,10 @@ var node = UL({&quot;class&quot;: &quot;listclass&quot;},
 <p>MochiKit.Iter good for table rows:</p>
 <pre class="literal-block">
 var classes = cycle(
-    {&quot;class&quot;: &quot;even&quot;},
-    {&quot;class&quot;: &quot;odd&quot;});
+    {'class': 'even'},
+    {'class': 'odd'});
 
-var items = [&quot;first&quot;, &quot;second&quot;];
+var items = ['first', 'second'];
 
 var node = UL(null,
     map(LI, classes, items));
@@ -886,7 +885,7 @@ support.</p>
 </pre>
 <p>JavaScript:</p>
 <pre class="literal-block">
-&gt;&gt;&gt; scrapeText(&quot;scrape_me&quot;);
+&gt;&gt;&gt; scrapeText('scrape_me');
 &quot;text is here&quot;
 </pre>
 </div>
@@ -901,7 +900,7 @@ support.</p>
 </pre>
 <p>JavaScript:</p>
 <pre class="literal-block">
-&gt;&gt;&gt; formContents(&quot;formNode&quot;)
+&gt;&gt;&gt; formContents('formNode')
 [[&quot;foo&quot;, &quot;bar&quot;], [&quot;1&quot;, &quot;2&quot;]]
 </pre>
 </div>
@@ -956,10 +955,10 @@ support.</p>
 <dd>Color from any valid CSS color description</dd>
 </dl>
 <ul class="simple">
-<li>&quot;rgb(...)&quot;</li>
-<li>&quot;hsl(...)&quot;</li>
-<li>&quot;#RRGGBB&quot;</li>
-<li>&quot;blue&quot;</li>
+<li>'rgb(...)'</li>
+<li>'hsl(...)'</li>
+<li>'#RRGGBB'</li>
+<li>'blue'</li>
 </ul>
 </div>
 <div class="slide" id="dom-to-color">
@@ -1071,7 +1070,7 @@ return d;
 <pre class="literal-block">
 function gotDocument(json) { /* ... */ }
 function delay(res) { return wait(2.0, res); }
-var d = loadJSONDoc(&quot;example.json&quot;);
+var d = loadJSONDoc('example.json');
 d.addCallback(delay);
 d.addCallback(gotDocument);
 </pre>
@@ -1100,10 +1099,10 @@ d.addCallback(gotDocument);
 <pre class="literal-block">
 function myClick(e) {
     var mouse = e.mouse();
-    log(&quot;page coordinates: &quot; + mouse.page);
-    log(&quot;client coordinates: &quot; + mouse.client);
+    log('page coordinates: ' + mouse.page);
+    log('client coordinates: ' + mouse.client);
 }
-connect(&quot;element_id&quot;, &quot;onclick&quot;, myClick);
+connect('element_id', 'onclick', myClick);
 </pre>
 </div>
 <div class="slide" id="custom-event-object">
