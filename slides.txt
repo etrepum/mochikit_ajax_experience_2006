@@ -356,7 +356,7 @@ toAmericanDate(date):
     Date object to M/D/YYYY
 
 toPaddedAmericanDate(date):
-    Date object to MM/DM/YYYY
+    Date object to MM/DD/YYYY
 
 
 Time and Timestamps
